@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Mulish, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const mulish = Mulish({
+  variable: "--font-mulish",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Dami Owolabi | Brandforge Architecture & Executive Leadership",
+  title: "Dami Owolabi | Executive Brand Advisory & Thought Leadership",
   description:
-    "Architecting enduring brands, intellectual authority, and executive ecosystems through Brandforge Academy, The Forge Room, Network, and Roundtable.",
+    "Architecting enduring brands, intellectual authority, and executive ecosystems for high-impact leaders across the globe.",
 };
 
 export default function RootLayout({
@@ -28,9 +28,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      className={`${mulish.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#041418] text-slate-900 dark:text-slate-100 selection:bg-[#439aa9]/20 selection:text-[#439aa9]">
+      <body className="min-h-screen flex flex-col bg-white text-[#0A0A0A] font-mulish selection:bg-[#439aa9]/20 selection:text-[#054753]">
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />

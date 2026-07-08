@@ -2,44 +2,25 @@
 @config "../tailwind.config.ts";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #439aa9;
-  --secondary: #054753;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --gray-50: #f7f8f8;
+  --teal-950: #02232a;
+  --teal-800: #054753;
+  --teal-500: #439aa9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: #439aa9;
-  --color-secondary: #054753;
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #041418;
-    --foreground: #f8fafc;
-  }
+  --font-sans: var(--font-mulish), ui-sans-serif, system-ui, sans-serif;
+  --font-mulish: var(--font-mulish), ui-sans-serif, system-ui, sans-serif;
+  --font-montserrat: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-mulish), sans-serif;
   overflow-x: hidden;
-}
-
-/* Custom premium visual utilities */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(67, 154, 169, 0.18);
-}
-
-.dark .glass-panel {
-  background: rgba(5, 71, 83, 0.4);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(67, 154, 169, 0.25);
 }

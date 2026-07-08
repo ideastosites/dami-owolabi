@@ -9,15 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        teal: {
+          950: "#02232A", // Near-Black Teal
+          800: "#054753", // Deep Teal
+          500: "#439aa9", // Muted Teal
+        },
         primary: {
-          DEFAULT: "#439aa9",
-          light: "#62b6c4",
-          dark: "#2a717e",
+          DEFAULT: "#054753", // Deep Teal
+          muted: "#439aa9", // Muted Teal
+          dark: "#02232A", // Near-Black Teal
         },
-        secondary: {
-          DEFAULT: "#054753",
-          dark: "#022930",
-        },
+      },
+      fontFamily: {
+        mulish: ["var(--font-mulish)", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
+        sans: ["var(--font-mulish)", "sans-serif"],
       },
     },
   },
