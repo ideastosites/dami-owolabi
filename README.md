@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dami Owolabi Personal Brand Website
 
-## Getting Started
+Welcome to the development repository for the Dami Owolabi personal brand website project. We are using Next.js, Tailwind CSS, and collaborating via Antigravity and GitHub Desktop.
 
-First, run the development server:
+## 🚀 The Golden Git Rules
+1. **NEVER commit directly to the `main` branch.** The `main` branch is for fully working, approved production code only.
+2. **Always create a feature branch** before writing any code. Open GitHub Desktop, ensure your current branch is `main`, click **New Branch**, and name it based on your assigned page (e.g., `feature/contact-page`).
+3. When your page is fully built and tested, push your branch to GitHub and open a **Pull Request (PR)** for review.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎨 Design System & Code Quality
+* Before prompting Antigravity, you **MUST** read the `DESIGN_SYSTEM.md` file in the root directory.
+* All copy, layout rules, forms, and headers must be pulled verbatim from the `Website - FINAL.docx` asset file. Do not invent text.
+* Ensure your layouts are completely responsive across mobile, tablet, and desktop breakpoints before submitting a Pull Request.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🤖 Standard Antigravity Prompt (Use This!)
+When starting your page build in Antigravity, copy and paste this exact prompt to ensure consistency:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+"Act as an expert Next.js and Tailwind CSS developer. Before writing any code, read the `DESIGN_SYSTEM.md` file in the root directory to understand the design pillars, typography, and strict color palette. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Your task is to build the [INSERT YOUR PAGE NAME] page.
+1. Use the exact text provided in the `Website - FINAL.docx` reference document. Do not invent or summarize copy.
+2. Ensure the layout is fully responsive across mobile, tablet, and desktop.
+3. Use the global `<Navbar>` and `<Footer>` components that already exist in the layout file. Do not regenerate or override them.
+4. Ensure all styling strictly adheres to the Tailwind configuration and the `DESIGN_SYSTEM.md` guidelines.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Output the component code for this page."
