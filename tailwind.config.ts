@@ -23,7 +23,7 @@ const config: Config = {
       fontFamily: {
         mulish: ["var(--font-mulish)", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
-        sans: ["var(--font-mulish)", "sans-serif"],
+        sans: ["var(--font-montserrat)", "sans-serif"],
       },
     },
   },

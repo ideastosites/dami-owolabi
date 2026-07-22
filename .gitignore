@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# vendored tooling (rebuild via .claude/skills/image-generation/SKILL.md)
+/tools/claude-image-gen
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

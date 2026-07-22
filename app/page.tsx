@@ -1,130 +1,135 @@
-import React from "react";
+import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import IntersectionStatement from "@/components/IntersectionStatement";
+import FocusRevealSection from "@/components/FocusReveal";
+import Marquee from "@/components/Marquee";
+import StickyPortraitLayout from "@/components/StickyPortraitLayout";
+
+function GradientDivider() {
+  return (
+    <div
+      aria-hidden
+      className="h-px w-full bg-gradient-to-r from-transparent via-[#E3E7E7] to-transparent"
+    />
+  );
+}
 
 export default function HomePage() {
-  const routes = [
-    {
-      title: "Brandforge Overview",
-      href: "/brandforge",
-      desc: "Explore the comprehensive Brandforge architecture and core executive pillars.",
-      badge: "/brandforge",
-    },
-    {
-      title: "Academy",
-      href: "/brandforge/academy",
-      desc: "Executive brand curriculum and elite identity design certification.",
-      badge: "/brandforge/academy",
-    },
-    {
-      title: "The Forge Room",
-      href: "/brandforge/the-forge-room",
-      desc: "Intensive strategic workshops and high-stakes brand engineering sprints.",
-      badge: "/brandforge/the-forge-room",
-    },
-    {
-      title: "The Brandforge Network",
-      href: "/brandforge/the-brandforge-network",
-      desc: "An exclusive global collective of visionary founders and C-suite leaders.",
-      badge: "/brandforge/the-brandforge-network",
-    },
-    {
-      title: "Roundtable",
-      href: "/brandforge/roundtable",
-      desc: "Quarterly C-suite forums analyzing macro shifts in brand resilience.",
-      badge: "/brandforge/roundtable",
-    },
-    {
-      title: "Work With Me",
-      href: "/work-with-me",
-      desc: "1-on-1 strategic advisory, keynote speaking, and organizational consulting.",
-      badge: "/work-with-me",
-    },
-    {
-      title: "Contact",
-      href: "/contact",
-      desc: "Direct inquiry office for consultations, press, and scheduling.",
-      badge: "/contact",
-    },
-  ];
-
   return (
-    <div className="w-full">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-24 md:py-36 bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-[#041418] dark:via-[#071f25] dark:to-[#041418] border-b border-[#439aa9]/15">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#439aa9]/10 border border-[#439aa9]/25 text-[#439aa9] text-xs font-semibold uppercase tracking-widest">
-            <span>Next.js App Router Architecture</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#439aa9]" />
-            <span>Tailwind CSS Design System</span>
-          </div>
-
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-[1.1]">
-            Architecting Enduring <span className="text-[#439aa9]">Executive Authority</span>
+    <StickyPortraitLayout imageSrc="/dami-owolabi2.png" imageAlt="Dami Owolabi">
+      <section className="px-6 py-12 text-center sm:px-12 sm:py-16 sm:text-left lg:px-16 lg:py-24">
+        <Reveal>
+          <h1 className="font-sans text-6xl font-bold uppercase leading-[0.9] tracking-[-0.03em] text-[#0A0A0A] sm:text-7xl lg:text-8xl">
+            Dami
+            <br />
+            Owolabi
           </h1>
-
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Welcome to the digital ecosystem of <strong className="text-slate-900 dark:text-white">Dami Owolabi</strong> &amp; <strong className="text-[#439aa9]">Brandforge</strong>. Built on high-performance architecture with Primary <code className="text-xs px-2 py-0.5 rounded bg-[#439aa9]/15 text-[#439aa9]">#439aa9</code> and Secondary <code className="text-xs px-2 py-0.5 rounded bg-[#054753]/40 text-[#054753] dark:text-[#62b6c4]">#054753</code> tokens.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Link
-              href="/brandforge"
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#439aa9] hover:bg-[#348896] text-white font-semibold text-sm shadow-xl shadow-[#439aa9]/25 transition-all duration-300 transform hover:-translate-y-0.5"
-            >
-              Explore Brandforge Ecosystem
-            </Link>
-            <Link
-              href="/work-with-me"
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#054753] hover:bg-[#083a43] text-white font-semibold text-sm transition-all duration-300 border border-[#439aa9]/30"
-            >
-              Strategic Advisory
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Routes & Architecture Matrix */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#439aa9]">
-              Site Directory & Routing
+          <p className="mt-5 font-mulish text-lg font-semibold text-[#054753] sm:text-xl">
+            Marketing Leader
+            <span className="mx-3 text-xl font-bold text-[#6B7573] sm:text-2xl">
+              &middot;
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-1">
-              Architecture Index
-            </h2>
-          </div>
-          <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md">
-            Every route is structured with dedicated App Router layouts, rich design system styling, and semantic markup.
+            Growth Strategist
+            <span className="mx-3 text-xl font-bold text-[#6B7573] sm:text-2xl">
+              &middot;
+            </span>
+            Brand Builder
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {routes.map((route, idx) => (
-            <Link
-              key={idx}
-              href={route.href}
-              className="group p-6 rounded-3xl bg-white dark:bg-[#071f25] border border-[#439aa9]/20 hover:border-[#439aa9] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <span className="inline-block px-3 py-1 rounded-lg text-xs font-mono font-medium bg-[#439aa9]/10 text-[#439aa9]">
-                  {route.badge}
+        <Reveal delay={0.1} className="mt-8 sm:mt-12">
+          <IntersectionStatement />
+          <Link
+            href="/work-with-me"
+            className="mx-auto mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#054753] px-7 py-3.5 font-mulish text-sm font-semibold text-white transition-colors hover:bg-[#439aa9] sm:mx-0 sm:mt-12"
+          >
+            Work With Me
+          </Link>
+        </Reveal>
+
+        {/* Portrait photo (mobile/tablet only) — sits directly under the name and text section. */}
+        <Reveal
+          delay={0.2}
+          className="relative mt-10 aspect-[4/5] w-full sm:mt-12 sm:aspect-[3/4] lg:hidden"
+        >
+          <Image
+            src="/dami-owolabi2.png"
+            alt="Dami Owolabi"
+            fill
+            quality={90}
+            sizes="100vw"
+            className="object-cover object-top"
+          />
+        </Reveal>
+      </section>
+
+      <GradientDivider />
+
+      <section className="relative overflow-hidden px-8 py-14 sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+        {/* Confined dot-grid texture behind the stats row. */}
+        <div
+          className="dot-grid pointer-events-none absolute inset-x-0 bottom-0 h-64"
+          aria-hidden
+        />
+
+        <div className="relative z-10">
+          <Reveal>
+            <div className="max-w-2xl font-sans text-lg leading-relaxed text-[#0A0A0A] sm:text-xl">
+              <p>
+                For over a decade, I have helped brands grow, reposition,
+                acquire customers, retain users and build marketing systems that
+                connect activity to commercial impact.
+              </p>
+              <p className="mt-6">
+                My work has cut across fintech, payments, QSR, retail, consumer
+                brands, Web3 and the agency-led marketing, with experience
+                across Nigeria, Ghana, Kenya and the United Kingdom.
+              </p>
+            </div>
+
+            <Image
+              src="/Client_Signature_Dark.png"
+              alt="Dami Owolabi's signature"
+              width={200}
+              height={56}
+              className="mt-8 h-10 w-auto object-contain sm:h-12"
+            />
+          </Reveal>
+
+          <Reveal
+            delay={0.15}
+            className="mt-10 grid grid-cols-3 gap-4 text-center sm:mt-12 sm:gap-8 sm:text-left"
+          >
+            {[
+              ["10+", "Years"],
+              ["7", "Industries"],
+              ["4", "Countries"],
+            ].map(([value, label]) => (
+              <div key={label}>
+                <span className="block font-sans text-6xl font-extrabold leading-none tracking-[-0.02em] text-[#054753] sm:text-7xl">
+                  {value}
                 </span>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#439aa9] transition-colors">
-                  {route.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {route.desc}
-                </p>
+                <span className="mt-3 block font-mulish text-xs font-semibold uppercase tracking-[0.08em] text-[#6B7573] sm:text-sm">
+                  {label}
+                </span>
               </div>
-              <div className="pt-6 flex items-center text-xs font-semibold text-[#439aa9]">
-                <span>Visit Route</span>
-                <span className="ml-1 group-hover:translate-x-1 transition-transform">&rarr;</span>
-              </div>
-            </Link>
-          ))}
+            ))}
+          </Reveal>
         </div>
       </section>
-    </div>
+
+      <Marquee />
+
+      <div className="px-8 pt-14 sm:px-12 sm:pt-16 lg:px-16 lg:pt-20">
+        <Reveal>
+          <p className="font-sans text-xl font-bold leading-snug tracking-[-0.01em] text-[#0A0A0A] sm:text-2xl">
+            Today, my work is focused on two things:
+          </p>
+        </Reveal>
+      </div>
+
+      <FocusRevealSection />
+    </StickyPortraitLayout>
   );
 }

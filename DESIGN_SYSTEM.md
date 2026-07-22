@@ -13,7 +13,7 @@ The visual language exists to support three qualities: **authority, clarity, and
 The audience for this site spans high-net-worth individuals and executive decision-makers, marketing and brand professionals, corporate employees evaluating training or coaching, and C-suite executives — a mix of people who evaluate brand quality by what a site *doesn't* do as much as what it does, and people making a practical decision about a course, session, or speaking engagement . This raises the bar on execution but does not change the design direction below; it sharpens it . Practically:
 
 - **Restraint reads as confidence.** Executive and HNW visitors in particular are more persuaded by unhurried pacing and generous whitespace than by animation, badges, or urgency copy . Every "sell harder" instinct should be resisted .
-- **Clarity serves the practical decision-makers.** Professionals and corporate employees evaluating a course or training session need the facts (price, format, curriculum) surfaced clearly and quickly — restraint should never come at the cost of making a booking decision harder than it needs to be . This is exactly what the sticky fact-rail and progressive-disclosure patterns are for (Section 3 of the Implementation Plan) .
+- **Clarity serves the practical decision-makers.** Professionals and corporate employees evaluating a course or training session need the facts (price, format, curriculum) surfaced clearly and quickly — restraint should never come at the cost of making a booking decision harder than it needs to be . This is exactly what honest, clearly-surfaced facts and progressive-disclosure patterns are for (see Components → Honest Numbers and Progressive Disclosure) .
 - **Production quality has zero tolerance for shortcuts.** Photography must be genuinely professional-grade (see Imagery below); no visible AI-generation artifacts, no stretched stock photography, no placeholder that reads as unfinished in a final build .
 - **Progressive disclosure over information dump.** Where client content is comprehensive (course curricula, program details), the layout should let a page read calm at a glance while the full depth stays one interaction away — see Components → Progressive Disclosure .
 - **Every shared link is a brand touchpoint.** This audience — from executive assistants forwarding a link to a C-suite principal, to a corporate L&D team circulating a training proposal — frequently forwards links rather than browsing in the moment . The social/OG preview card matters as much as the page itself .
@@ -100,7 +100,7 @@ All neutrals above are cool-toned (slight blue-gray cast, never yellow/cream) by
 
 ## Typography
 
-### Primary Typeface — Mulish
+### Primary Typeface — Montserrat
 Used for **all headlines, body copy, and UI text** . It's the voice of the site — clean, geometric, humanist sans-serif that reads as confident without being cold .
 
 | Style | Weight | Size (desktop) | Size (mobile) | Line height |
@@ -113,19 +113,19 @@ Used for **all headlines, body copy, and UI text** . It's the voice of the site 
 | Body (default) | Regular (400) | 16px | 15px | 1.6 |
 | Caption / Meta | Medium (500) | 13–14px | 13px | 1.4 |
 
-### Secondary Typeface — Montserrat
-Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quotes, button labels, or a single contrasting word inside a Mulish headline . It should never carry a full paragraph — its job is to punctuate, not narrate .
+### Secondary Typeface — Mulish
+Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quotes, button labels, or a single contrasting word inside a Montserrat headline . It should never carry a full paragraph — its job is to punctuate, not narrate .
 
-- Eyebrow/label style: Montserrat, SemiBold (600), uppercase, letter-spacing +0.08em, small size (12–13px), often in Deep Teal on a white background or white on a teal background (as in the brand mark) .
-- Button labels: Montserrat, SemiBold (600), never Regular .
+- Eyebrow/label style: Mulish, SemiBold (600), uppercase, letter-spacing +0.08em, small size (12–13px), often in Deep Teal on a white background or white on a teal background (as in the brand mark) .
+- Button labels: Mulish, SemiBold (600), never Regular .
 
 ### Typographic Principles
 
-- One font talks (Mulish), one font *emphasizes* (Montserrat) . Don't let Montserrat creep into body paragraphs — that dilutes the hierarchy the two fonts are meant to create .
+- One font talks (Montserrat), one font *emphasizes* (Mulish) . Don't let Mulish creep into body paragraphs — that dilutes the hierarchy the two fonts are meant to create .
 - Favor sentence case over Title Case in headlines — it reads more like a person speaking, less like brochure copy .
 - Generous line-height and paragraph spacing (1.6+ for body) — clarity is a stated design goal, and cramped type undermines it .
 - **Reading measure:** long-form body copy (manifesto sections, essay-style paragraphs) is constrained to 60–70 characters per line, not the full column width — a narrower, more deliberate measure reads as edited rather than filled .
-- **Large display type gets negative tracking** (roughly -0.01em to -0.02em) at 48px+ — tightens the letterforms so big Mulish headlines feel considered rather than default-browser-large .
+- **Large display type gets negative tracking** (roughly -0.01em to -0.02em) at 48px+ — tightens the letterforms so big Montserrat headlines feel considered rather than default-browser-large .
 
 ### Motion
 
@@ -148,7 +148,7 @@ Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quo
 ## Components
 
 ### Buttons
-- **Primary:** Deep Teal (`#054753`) background, white Montserrat SemiBold label, no gradient, subtle radius (6–8px), hover → Muted Teal (`#439aa9`) .
+- **Primary:** Deep Teal (`#054753`) background, white Mulish SemiBold label, no gradient, subtle radius (6–8px) or fully rounded, hover → Muted Teal (`#439aa9`) .
 - **Secondary/Ghost:** Transparent or white background, 1.5px Deep Teal or Black border, Deep Teal text, hover → fill with Deep Teal, text turns white .
 - No drop shadows on buttons . Flat, confident, architectural .
 
@@ -157,33 +157,30 @@ Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quo
 - Optional accent: a 2–3px Deep Teal or Muted Teal top/left border to mark featured content (e.g., a flagship case study or lead magnet) .
 
 ### Navigation
-- White or `--gray-50` background, Mulish for nav labels, Montserrat-style uppercase micro-label if a "current section" indicator is needed .
-- One pill-shaped CTA button (Deep Teal fill, white Montserrat label, fully rounded) sits at the far right of the nav — the single highest-contrast element on the page, reserved for the primary action (e.g., "Contact" / "Work with me") .
-- Logo mark uses the two-tone lockup (black "Aa" + teal Montserrat tag) as established in the brand sheet — keep clear space around it, never place on busy imagery .
+- White or `--gray-50` background, Montserrat for nav labels, Mulish-style uppercase micro-label if a "current section" indicator is needed .
+- One pill-shaped (or otherwise clearly primary) CTA button sits at the far right of the nav — the single highest-contrast element on the page, reserved for the primary action (e.g., "Contact" / "Work with me") .
+- Logo mark uses the two-tone lockup as established in the brand sheet — keep clear space around it, never place on busy imagery .
 
-### Role Stack (hero identity treatment)
-- The hero's job is identity, not argument: a photo, the name, and what the person does — nothing else . Positioning copy, industry tags, and the primary CTA move to their own sections below the hero (see Home page structure) rather than crowding into it .
-- Multiple roles (e.g. "Marketing Leader. Growth Strategist. Brand Builder.") are shown as a stack of overlapping full-width rounded bars — one role per bar — using the Core Palette's dark-to-light progression top to bottom (Near-Black Teal → Deep Teal → Muted Teal), white Montserrat SemiBold label text on each . This is a direct visual callback to the brand's own core-palette swatches, repurposed as a typographic device rather than a color reference .
-- Order roles darkest-to-lightest, most-senior/primary role first — this reads as a considered hierarchy, not a random list .
-- No invented sales metrics ("120+ clients," a fabricated client count) anywhere near the hero . A **Fact Rail** (below) of honestly-derived counts — years, countries, industries — is a different thing: it restates what the client's own copy already says in numeral form, not a manufactured credibility claim .
+### Hero (identity, not argument)
+The hero's job is identity: who this is, what they do, and a strong image of them — not the full pitch . Positioning copy, industry tags, and secondary CTAs belong in sections below the hero, not crowded into it .
 
-### Photo Frame (hero portrait treatment)
-- The portrait sits in a clipped geometric shape (hexagon, via CSS `clip-path`) rather than a plain rounded rectangle — a distinct, memorable crop instead of the generic "rounded photo card" pattern used everywhere .
-- An offset solid-color shape (Deep Teal or Muted Teal, flat fill, no gradient) sits behind the photo, shifted diagonally, so the geometry reads as layered rather than flat-pasted .
-- A scatter of small dots (Muted Teal, varying opacity, a few different sizes) fills the negative space around the frame — a light decorative texture, not a pattern that competes with the photo itself . Sparse; this is seasoning, not wallpaper .
-- Still subject to the Imagery production bar above: the photo itself must be genuinely professional regardless of how creatively it's framed .
+Beyond that, the *how* is intentionally open — a hero can be a full-bleed sticky portrait column, a clipped/framed photo treatment, a split layout, or something else entirely, as different pages and future redesigns explore different structures . What stays constant is the feeling (authority, restraint, a real person rather than a template) and these guardrails:
+- If multiple roles/titles are shown (e.g. "Marketing Leader · Growth Strategist · Brand Builder"), order them most-senior/primary first — a considered hierarchy, not a random list — and keep them visually secondary to the name itself .
+- No invented sales metrics ("120+ clients," a fabricated client count) anywhere near the hero . Honestly-derived counts (years, countries, industries — see **Honest Numbers** below) are a different thing entirely .
+- The portrait must clear the Imagery production bar below regardless of how creatively it's cropped, framed, or composited .
 
-### Fact Rail
-- A slim vertical list of 2–4 honest, derivable facts placed beside the hero photo — e.g. "10+ Years," "7 Industries," "4 Countries" — each a bold Mulish numeral with a short label beneath in muted gray .
-- Every number here must trace directly to something the client's own copy already states (e.g. "over a decade" → "10+ Years"; the count of industry tags → "7 Industries") . Never a number invented for persuasive effect — that's exactly what the Byline Block section above rules out .
-- Visually restrained: a plain list, not bordered stat cards — the "no stat-card row" principle still applies; this is a quiet aside next to the photo, not a metrics dashboard competing with the hero .
+### Honest Numbers
+Where a page surfaces numeric facts — "10+ Years," "7 Industries," "4 Countries" — every number must trace directly to something the client's own copy already states (e.g. "over a decade" → "10+ Years"; the count of industry tags → "7 Industries") . Never a number invented for persuasive effect .
 
-### Chapter Index (replaces "Stat Cards" / numbered-tier framing)
-- The `01 / 02 / 03` numbered treatment used on Work With Me, the BrandForge hub, and Academy cards reads as a table-of-contents marker — "part one of a body of thought" — not a pricing-tier label .
-- Keep numerals in Muted Teal, Montserrat, consistent weight across every instance so the numbering reads as one continuous system across pages, not per-section decoration .
+Presentation is open — a slim list beside a photo, a plain grid, inline in a sentence, whatever a given layout calls for — as long as it stays visually restrained . The constraint is honesty and restraint, not a specific layout: avoid it reading as a bordered "stat card" wall competing for attention with the hero .
+
+### Numbered / Indexed Sections
+Where a page uses a numbered structure (`01 / 02 / 03`) to organize ideas — Work With Me, the BrandForge hub, Academy cards, a "here's what I focus on" section — it should read as a table-of-contents marker, "part one of a body of thought," not a pricing-tier label .
+
+Numeral treatment (size, weight, whether it's a small tag or a large ghosted background numeral) can vary by context and is a good place for creative exploration; keep it in a teal-family or ink color consistent with the rest of the palette, and keep the *feeling* — chapters, not tiers — consistent even where the exact styling isn't identical across every instance .
 
 ### Progressive Disclosure
-- For content-dense sections written by the client (course curricula, "who this is for" lists, module breakdowns), default to a calm, scannable summary with the full itemized content available via a clean expand/collapse interaction — not an accordion that looks like a FAQ widget, but a considered "show full curriculum" pattern consistent with the rest of the type system (Mulish body, teal accent for the toggle affordance) .
+- For content-dense sections written by the client (course curricula, "who this is for" lists, module breakdowns), default to a calm, scannable summary with the full itemized content available via a clean expand/collapse interaction — not an accordion that looks like a FAQ widget, but a considered "show full curriculum" pattern consistent with the rest of the type system .
 - Never hide content behind disclosure that a visitor needs to make a decision (price, format, who it's for at a glance) — only the granular depth (full module list, session-by-session breakdown) goes behind the toggle .
 - No client wording is changed by this pattern — it only changes how much is visible by default .
 
@@ -221,14 +218,14 @@ Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quo
 **Do**
 - Let white space and typography carry most of the visual weight .
 - Use Muted Teal as a single, deliberate accent per view .
-- Keep Montserrat confined to labels, tags, and buttons .
+- Keep Mulish confined to labels, tags, and buttons .
 - Use the hand-drawn line motif as a recurring signature detail .
 - Let dense client content breathe via progressive disclosure rather than cramming everything above the fold .
 
 **Don't**
 - Don't use warm-toned neutrals (cream, beige, tan, yellow-gray) — backgrounds are white, black, or cool gray only .
 - Don't use emojis anywhere in the interface .
-- Don't set body copy in Montserrat or headlines in anything but Mulish .
+- Don't set body copy in Mulish or headlines in anything but Montserrat .
 - Don't use stock "corporate services" imagery or generic icon packs that dilute the personal-brand feel .
 - Don't add a client logo wall or invented stat-card metrics — this is a person's site, not an agency's proof-of-work page .
 - Don't reach for default "SaaS-isms" to fill space: icon-in-a-circle feature grids, overused badge/pill counts, cartoon/flat illustration packs, gradient-mesh backgrounds, or generic "trusted by" sections without real substance behind them . If a section idea could be swapped into any B2B SaaS landing page unchanged, it doesn't belong here .
@@ -281,8 +278,8 @@ When Antigravity generates forms, it must include these exact fields :
 When building the course listings for "The BrandForge Academy", developers and AI MUST adhere to the provided design reference image :
 * **Layout:** Vertical card layout with a clean white background and subtle shadow .
 * **Hero Image:** Edge-to-edge image at the top of the card .
-* **Meta Info:** Duration text sits above the title in a small, muted Montserrat font .
-* **Title:** Bold `Mulish` font . **Crucial detail:** The title must be preceded by a thick vertical accent line (use Primary color `#439aa9`, do NOT use red) .
+* **Meta Info:** Duration text sits above the title in a small, muted Mulish font .
+* **Title:** Bold `Montserrat` font . **Crucial detail:** The title must be preceded by a thick vertical accent line (use Primary color `#439aa9`, do NOT use red) .
 * **Description:** Short, concise excerpt below the title .
 * **Alert/Deadline Text:** Muted text indicating investment (e.g., "₦50,000") .
 * **Footer:** Bottom alignment containing the format on the left, and a pill-shaped button on the right, filled with the Primary color `#439aa9` .

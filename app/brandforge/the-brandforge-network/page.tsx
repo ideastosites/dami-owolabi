@@ -6,7 +6,7 @@ export default function BrandforgeNetworkPage() {
     <div className="py-20 md:py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-12">
       <div className="space-y-4">
         <div className="flex items-center gap-2 text-sm text-[#439aa9] font-medium">
-          <Link href="/brandforge" className="hover:underline">
+          <Link href="/brandforge" className="link-hover">
             Brandforge
           </Link>
           <span>/</span>

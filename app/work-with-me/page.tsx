@@ -63,7 +63,7 @@ export default function WorkWithMePage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[#439aa9] hover:text-[#054753] dark:hover:text-white transition-colors"
               >
-                Inquire About Engagement &rarr;
+                <span className="link-hover">Inquire About Engagement</span> &rarr;
               </Link>
             </div>
           </div>

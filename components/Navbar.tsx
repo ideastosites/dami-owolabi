@@ -34,7 +34,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-[#E3E7E7] transition-all">
+    <header className="sticky top-0 z-50 w-full bg-white transition-all">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
@@ -52,10 +52,10 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 lg:gap-10">
           <Link
             href="/"
-            className={`font-mulish text-base transition-colors duration-200 ${
+            className={`link-hover font-sans text-base transition-colors duration-200 ${
               pathname === "/"
                 ? "text-[#054753] font-bold"
-                : "text-[#0A0A0A] font-normal hover:text-[#439aa9]"
+                : "text-[#0A0A0A] font-semibold hover:text-[#439aa9]"
             }`}
           >
             Home
@@ -63,10 +63,10 @@ export default function Navbar() {
 
           <Link
             href="/work-with-me"
-            className={`font-mulish text-base transition-colors duration-200 ${
+            className={`link-hover font-sans text-base transition-colors duration-200 ${
               pathname === "/work-with-me"
                 ? "text-[#054753] font-bold"
-                : "text-[#0A0A0A] font-normal hover:text-[#439aa9]"
+                : "text-[#0A0A0A] font-semibold hover:text-[#439aa9]"
             }`}
           >
             Work With Me
@@ -82,14 +82,14 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setBrandForgeDropdownOpen(!brandForgeDropdownOpen)}
-              className={`flex items-center gap-1.5 font-mulish text-base py-2 transition-colors duration-200 focus:outline-none ${
+              className={`flex items-center gap-1.5 font-sans text-base py-2 transition-colors duration-200 focus:outline-none ${
                 isBrandForgeActive
                   ? "text-[#054753] font-bold"
-                  : "text-[#0A0A0A] font-normal hover:text-[#439aa9]"
+                  : "text-[#0A0A0A] font-semibold hover:text-[#439aa9]"
               }`}
               aria-expanded={brandForgeDropdownOpen}
             >
-              <span>BrandForge</span>
+              <span className="link-hover">BrandForge</span>
               <svg
                 className={`w-4 h-4 transition-transform duration-200 ${
                   brandForgeDropdownOpen ? "rotate-180 text-[#054753]" : ""
@@ -114,7 +114,7 @@ export default function Navbar() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setBrandForgeDropdownOpen(false)}
-                        className={`block px-5 py-2.5 font-mulish text-sm transition-colors duration-150 ${
+                        className={`block px-5 py-2.5 font-sans text-sm transition-colors duration-150 ${
                           isActive
                             ? "bg-[#EFF9FA] text-[#054753] font-bold"
                             : "text-[#0A0A0A] hover:bg-[#EFF9FA] hover:text-[#439aa9]"
@@ -128,26 +128,15 @@ export default function Navbar() {
               </div>
             )}
           </div>
-
-          <Link
-            href="/contact"
-            className={`font-mulish text-base transition-colors duration-200 ${
-              pathname === "/contact"
-                ? "text-[#054753] font-bold"
-                : "text-[#0A0A0A] font-normal hover:text-[#439aa9]"
-            }`}
-          >
-            Contact
-          </Link>
         </div>
 
         {/* Far Right CTA Button */}
         <div className="hidden md:flex items-center">
           <Link
-            href="#"
-            className="rounded-full bg-[#054753] hover:bg-[#439aa9] text-white font-montserrat font-semibold text-sm px-7 py-3 transition-colors duration-200"
+            href="/contact"
+            className="rounded-full border-2 border-[#054753] text-[#054753] hover:bg-[#054753] hover:text-white font-mulish font-semibold text-sm px-7 py-3 transition-colors duration-200"
           >
-            [CTA button]
+            Contact Me
           </Link>
         </div>
 
@@ -191,10 +180,10 @@ export default function Navbar() {
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className={`block px-3 py-2.5 rounded-lg font-mulish text-base ${
+              className={`block px-3 py-2.5 rounded-lg font-sans text-base ${
                 pathname === "/"
                   ? "text-[#054753] font-bold bg-[#EFF9FA]"
-                  : "text-[#0A0A0A] hover:text-[#439aa9]"
+                  : "text-[#0A0A0A] font-semibold hover:text-[#439aa9]"
               }`}
             >
               Home
@@ -203,10 +192,10 @@ export default function Navbar() {
             <Link
               href="/work-with-me"
               onClick={() => setMobileMenuOpen(false)}
-              className={`block px-3 py-2.5 rounded-lg font-mulish text-base ${
+              className={`block px-3 py-2.5 rounded-lg font-sans text-base ${
                 pathname === "/work-with-me"
                   ? "text-[#054753] font-bold bg-[#EFF9FA]"
-                  : "text-[#0A0A0A] hover:text-[#439aa9]"
+                  : "text-[#0A0A0A] font-semibold hover:text-[#439aa9]"
               }`}
             >
               Work With Me
@@ -217,10 +206,10 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileBrandForgeExpanded(!mobileBrandForgeExpanded)}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg font-mulish text-base focus:outline-none ${
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg font-sans text-base focus:outline-none ${
                   isBrandForgeActive
                     ? "text-[#054753] font-bold bg-[#EFF9FA]"
-                    : "text-[#0A0A0A]"
+                    : "text-[#0A0A0A] font-semibold"
                 }`}
               >
                 <span>BrandForge</span>
@@ -246,7 +235,7 @@ export default function Navbar() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`block px-3 py-2 rounded-lg font-mulish text-sm ${
+                        className={`block px-3 py-2 rounded-lg font-sans text-sm ${
                           isActive
                             ? "text-[#054753] font-bold bg-[#EFF9FA]"
                             : "text-[#0A0A0A] hover:text-[#439aa9]"
@@ -259,27 +248,15 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`block px-3 py-2.5 rounded-lg font-mulish text-base ${
-                pathname === "/contact"
-                  ? "text-[#054753] font-bold bg-[#EFF9FA]"
-                  : "text-[#0A0A0A] hover:text-[#439aa9]"
-              }`}
-            >
-              Contact
-            </Link>
           </div>
 
           <div className="pt-2 px-3">
             <Link
-              href="#"
+              href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center rounded-full bg-[#054753] hover:bg-[#439aa9] text-white font-montserrat font-semibold text-sm py-3.5 transition-colors"
+              className="block w-full text-center rounded-full border-2 border-[#054753] text-[#054753] hover:bg-[#054753] hover:text-white font-mulish font-semibold text-sm py-3.5 transition-colors"
             >
-              [CTA button]
+              Contact Me
             </Link>
           </div>
         </div>
