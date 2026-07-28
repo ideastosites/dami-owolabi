@@ -113,15 +113,17 @@ Used for **all headlines, body copy, and UI text** . It's the voice of the site 
 | Body (default) | Regular (400) | 16px | 15px | 1.6 |
 | Caption / Meta | Medium (500) | 13–14px | 13px | 1.4 |
 
-### Secondary Typeface — Mulish
+### Secondary Typeface — Roc Grotesk *(trial, standing in for Mulish)*
 Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quotes, button labels, or a single contrasting word inside a Montserrat headline . It should never carry a full paragraph — its job is to punctuate, not narrate .
 
-- Eyebrow/label style: Mulish, SemiBold (600), uppercase, letter-spacing +0.08em, small size (12–13px), often in Deep Teal on a white background or white on a teal background (as in the brand mark) .
-- Button labels: Mulish, SemiBold (600), never Regular .
+Roc Grotesk (a licensed typeface) is currently loaded in place of Mulish as a trial . The role it plays in the system — accent-only, never body copy — is unchanged; if the trial ends, Mulish resumes this exact role .
+
+- Eyebrow/label style: Roc Grotesk, SemiBold (600), uppercase, letter-spacing +0.08em, small size (12–13px), often in Deep Teal on a white background or white on a teal background (as in the brand mark) .
+- Button labels: Roc Grotesk, SemiBold (600), never Regular .
 
 ### Typographic Principles
 
-- One font talks (Montserrat), one font *emphasizes* (Mulish) . Don't let Mulish creep into body paragraphs — that dilutes the hierarchy the two fonts are meant to create .
+- One font talks (Montserrat), one font *emphasizes* (Roc Grotesk) . Don't let the accent typeface creep into body paragraphs — that dilutes the hierarchy the two fonts are meant to create .
 - Favor sentence case over Title Case in headlines — it reads more like a person speaking, less like brochure copy .
 - Generous line-height and paragraph spacing (1.6+ for body) — clarity is a stated design goal, and cramped type undermines it .
 - **Reading measure:** long-form body copy (manifesto sections, essay-style paragraphs) is constrained to 60–70 characters per line, not the full column width — a narrower, more deliberate measure reads as edited rather than filled .
@@ -148,7 +150,7 @@ Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quo
 ## Components
 
 ### Buttons
-- **Primary:** Deep Teal (`#054753`) background, white Mulish SemiBold label, no gradient, subtle radius (6–8px) or fully rounded, hover → Muted Teal (`#439aa9`) .
+- **Primary:** Deep Teal (`#054753`) background, white Roc Grotesk SemiBold label, no gradient, subtle radius (6–8px) or fully rounded, hover → Muted Teal (`#439aa9`) .
 - **Secondary/Ghost:** Transparent or white background, 1.5px Deep Teal or Black border, Deep Teal text, hover → fill with Deep Teal, text turns white .
 - No drop shadows on buttons . Flat, confident, architectural .
 
@@ -157,7 +159,7 @@ Used **sparingly** as an accent typeface: eyebrow labels, section tags, pull quo
 - Optional accent: a 2–3px Deep Teal or Muted Teal top/left border to mark featured content (e.g., a flagship case study or lead magnet) .
 
 ### Navigation
-- White or `--gray-50` background, Montserrat for nav labels, Mulish-style uppercase micro-label if a "current section" indicator is needed .
+- White or `--gray-50` background, Montserrat for nav labels, Roc Grotesk-style uppercase micro-label if a "current section" indicator is needed .
 - One pill-shaped (or otherwise clearly primary) CTA button sits at the far right of the nav — the single highest-contrast element on the page, reserved for the primary action (e.g., "Contact" / "Work with me") .
 - Logo mark uses the two-tone lockup as established in the brand sheet — keep clear space around it, never place on busy imagery .
 
@@ -218,14 +220,14 @@ Numeral treatment (size, weight, whether it's a small tag or a large ghosted bac
 **Do**
 - Let white space and typography carry most of the visual weight .
 - Use Muted Teal as a single, deliberate accent per view .
-- Keep Mulish confined to labels, tags, and buttons .
+- Keep Roc Grotesk confined to labels, tags, and buttons .
 - Use the hand-drawn line motif as a recurring signature detail .
 - Let dense client content breathe via progressive disclosure rather than cramming everything above the fold .
 
 **Don't**
 - Don't use warm-toned neutrals (cream, beige, tan, yellow-gray) — backgrounds are white, black, or cool gray only .
 - Don't use emojis anywhere in the interface .
-- Don't set body copy in Mulish or headlines in anything but Montserrat .
+- Don't set body copy in Roc Grotesk or headlines in anything but Montserrat .
 - Don't use stock "corporate services" imagery or generic icon packs that dilute the personal-brand feel .
 - Don't add a client logo wall or invented stat-card metrics — this is a person's site, not an agency's proof-of-work page .
 - Don't reach for default "SaaS-isms" to fill space: icon-in-a-circle feature grids, overused badge/pill counts, cartoon/flat illustration packs, gradient-mesh backgrounds, or generic "trusted by" sections without real substance behind them . If a section idea could be swapped into any B2B SaaS landing page unchanged, it doesn't belong here .
@@ -278,7 +280,7 @@ When Antigravity generates forms, it must include these exact fields :
 When building the course listings for "The BrandForge Academy", developers and AI MUST adhere to the provided design reference image :
 * **Layout:** Vertical card layout with a clean white background and subtle shadow .
 * **Hero Image:** Edge-to-edge image at the top of the card .
-* **Meta Info:** Duration text sits above the title in a small, muted Mulish font .
+* **Meta Info:** Duration text sits above the title in a small, muted Roc Grotesk font .
 * **Title:** Bold `Montserrat` font . **Crucial detail:** The title must be preceded by a thick vertical accent line (use Primary color `#439aa9`, do NOT use red) .
 * **Description:** Short, concise excerpt below the title .
 * **Alert/Deadline Text:** Muted text indicating investment (e.g., "₦50,000") .
