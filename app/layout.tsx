@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Mulish } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// TEMPORARY: Roc Grotesk standing in for Mulish, using the licensed font
-// files from the client's Roc Grotesk Font Family package. Swap back to
-// Mulish (next/font/google) when this trial period is over.
-const mulish = localFont({
+const mulish = Mulish({
   variable: "--font-mulish",
+  subsets: ["latin"],
+});
+
+// Roc Grotesk using the licensed font files from the client's Roc Grotesk Font Family package.
+// Applied to the BrandForge ecosystem as the secondary typography.
+const rocGrotesk = localFont({
+  variable: "--font-roc",
   src: [
     {
       path: "../public/fonts/roc-grotesk/RocGrotesk-Regular.woff2",
@@ -58,9 +62,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${mulish.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
+      className={`${mulish.variable} ${rocGrotesk.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-white text-[#0A0A0A] font-sans selection:bg-[#439aa9]/20 selection:text-[#054753]">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-white text-[#0A0A0A] font-sans selection:bg-[#439aa9]/20 selection:text-[#054753]">
         <div aria-hidden className="grain-overlay" />
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
