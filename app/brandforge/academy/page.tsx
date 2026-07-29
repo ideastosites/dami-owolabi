@@ -1,3 +1,4 @@
+export default function Page() { return null; }
 "use client";
 
 import React, { useState } from "react";

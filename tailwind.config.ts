@@ -21,7 +21,6 @@ const config: Config = {
         },
       },
       fontFamily: {
-        mulish: ["var(--font-mulish)", "sans-serif"],
         roc: ["var(--font-roc)", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
         sans: ["var(--font-montserrat)", "sans-serif"],

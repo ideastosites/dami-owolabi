@@ -267,7 +267,7 @@ The BrandForge section is a multi-page directory . It MUST be structured with th
   * **`/brandforge/academy/1-on-1-strategy-session`** (Individual course detail page) 
   * **`/brandforge/academy/switching-into-marketing`** (Individual course detail page) 
   * **`/brandforge/academy/commercial-marketing-and-growth`** (Individual course detail page) 
-
+  
 *Note for Academy Courses:* Each course requires its own detail view/page linked from the Academy page (Interview Prep Sprint, 1:1 Strategy Session, Switching Into Marketing, Commercial Marketing & Growth Course) .
 
 ### Form Data Structures

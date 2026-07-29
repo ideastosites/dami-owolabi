@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { ReactNode } from "react";
 
 export default function Reveal({
@@ -16,7 +16,7 @@ export default function Reveal({
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 40, scale: 0.95 }}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={

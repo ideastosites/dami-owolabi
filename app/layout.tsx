@@ -5,15 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const mulish = Mulish({
-  variable: "--font-mulish",
-  subsets: ["latin"],
-});
-
-// Roc Grotesk using the licensed font files from the client's Roc Grotesk Font Family package.
-// Applied to the BrandForge ecosystem as the secondary typography.
-const rocGrotesk = localFont({
-  variable: "--font-roc",
+const roc = localFont({
   src: [
     {
       path: "../public/fonts/roc-grotesk/RocGrotesk-Regular.woff2",
@@ -41,6 +33,7 @@ const rocGrotesk = localFont({
       style: "normal",
     },
   ],
+  variable: "--font-roc",
 });
 
 const montserrat = Montserrat({
@@ -49,9 +42,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Dami Owolabi — Marketing Leader, Growth Strategist, Brand Builder",
+  title: "Dami Owolabi | Executive Brand Advisory & Thought Leadership",
   description:
-    "Dami Owolabi works at the intersection of marketing, growth and business — helping brands grow smarter and marketers become hard to ignore.",
+    "Architecting enduring brands, intellectual authority, and executive ecosystems for high-impact leaders across the globe.",
 };
 
 export default function RootLayout({
@@ -62,11 +55,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${mulish.variable} ${rocGrotesk.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
-      suppressHydrationWarning
+      className={`${roc.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
     >
-      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-white text-[#0A0A0A] font-sans selection:bg-[#439aa9]/20 selection:text-[#054753]">
-        <div aria-hidden className="grain-overlay" />
+      <body className="min-h-screen flex flex-col bg-white text-[#0A0A0A] font-sans selection:bg-[#439aa9]/20 selection:text-[#054753]">
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />
