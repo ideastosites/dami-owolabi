@@ -16,7 +16,7 @@ function FocusItem({ number, line }: { number: string; line: string }) {
         {number}
       </span>
       <div className="relative max-w-2xl pr-16 sm:pr-24 lg:pr-32">
-        <span className="font-mulish text-sm font-bold text-[#439aa9]">
+        <span className="font-roc text-sm font-bold text-[#439aa9]">
           {number}
         </span>
         <p className="mt-3 font-sans text-2xl font-bold leading-tight tracking-[-0.02em] text-[#0A0A0A] sm:text-3xl lg:text-4xl">
@@ -49,7 +49,7 @@ export default function FocusRevealSection() {
       <Reveal delay={0.2} className="relative z-10">
         <Link
           href="/work-with-me"
-          className="inline-flex items-center justify-center rounded-full bg-[#054753] px-8 py-4 font-mulish text-base font-semibold text-white transition-colors hover:bg-[#439aa9]"
+          className="inline-flex items-center justify-center rounded-full bg-[#054753] px-8 py-4 font-roc text-base font-semibold text-white transition-colors hover:bg-[#439aa9]"
         >
           Work With Me
         </Link>

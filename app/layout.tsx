@@ -5,11 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// TEMPORARY: Roc Grotesk standing in for Mulish, using the licensed font
-// files from the client's Roc Grotesk Font Family package. Swap back to
-// Mulish (next/font/google) when this trial period is over.
-const mulish = localFont({
-  variable: "--font-mulish",
+const roc = localFont({
   src: [
     {
       path: "../public/fonts/roc-grotesk/RocGrotesk-Regular.woff2",
@@ -37,6 +33,7 @@ const mulish = localFont({
       style: "normal",
     },
   ],
+  variable: "--font-roc",
 });
 
 const montserrat = Montserrat({
@@ -45,9 +42,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Dami Owolabi — Marketing Leader, Growth Strategist, Brand Builder",
+  title: "Dami Owolabi | Executive Brand Advisory & Thought Leadership",
   description:
-    "Dami Owolabi works at the intersection of marketing, growth and business — helping brands grow smarter and marketers become hard to ignore.",
+    "Architecting enduring brands, intellectual authority, and executive ecosystems for high-impact leaders across the globe.",
 };
 
 export default function RootLayout({
@@ -58,10 +55,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${mulish.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
+      className={`${roc.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-screen flex flex-col bg-white text-[#0A0A0A] font-sans selection:bg-[#439aa9]/20 selection:text-[#054753]">
-        <div aria-hidden className="grain-overlay" />
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />
