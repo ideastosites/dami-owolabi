@@ -1,91 +1,117 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import InquiryModalTrigger from "@/components/InquiryModalTrigger";
+
+export const metadata = {
+  title: "Work With Me | Dami Owolabi",
+  description: "Strategic Advisory & Executive Collaboration.",
+};
 
 export default function WorkWithMePage() {
-  const engagements = [
-    {
-      title: "Executive Brand Advisory",
-      tagline: "1-on-1 Strategic Mentorship & Positioning",
-      description:
-        "High-touch advisory for founders, C-suite executives, and thought leaders looking to architect enduring authority and market differentiation.",
-      badge: "Advisory",
-    },
-    {
-      title: "Keynotes & Masterclasses",
-      tagline: "Global Speaking & Leadership Forums",
-      description:
-        "Engaging keynotes exploring brand architecture, intellectual property leverage, and the future of creative leadership.",
-      badge: "Speaking",
-    },
-    {
-      title: "Corporate Brand Transformation",
-      tagline: "Ecosystem Audit & Architecture",
-      description:
-        "Comprehensive brand equity engineering for high-growth enterprises seeking unified narrative, cultural alignment, and market dominance.",
-      badge: "Enterprise",
-    },
-  ];
-
   return (
-    <div className="py-20 md:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-16">
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#439aa9]/10 text-[#439aa9] border border-[#439aa9]/20">
-          Work With Me
-        </span>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Strategic Advisory & Executive Collaboration
-        </h1>
-        <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Partner directly with Dami Owolabi to transform organizational narrative, architect market-defining brand systems, and empower leadership resilience.
-        </p>
-      </div>
+    <main className="pt-24 pb-32">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
+        
+        {/* Header */}
+        <div className="mb-24 lg:mb-32 max-w-[70ch]">
+          <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-teal-800 tracking-tight font-mulish leading-[1.05]">
+            Work With Me
+          </h1>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {engagements.map((item, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col justify-between p-8 rounded-3xl bg-white dark:bg-[#071f25] border border-[#439aa9]/20 hover:border-[#439aa9] transition-all duration-300 shadow-sm hover:shadow-xl"
-          >
-            <div className="space-y-4">
-              <span className="inline-block px-3 py-1 rounded-lg text-xs font-semibold uppercase tracking-wider bg-[#054753] text-[#62b6c4]">
-                {item.badge}
-              </span>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                {item.title}
-              </h3>
-              <p className="text-sm font-medium text-[#439aa9]">{item.tagline}</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                {item.description}
+        {/* 01: Advisory */}
+        <section className="mb-32 md:mb-40 border-t border-[#E3E7E7] pt-16 grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-4 flex flex-col gap-8">
+            <span className="font-montserrat text-teal-500 font-semibold text-[13px] uppercase tracking-[0.08em]">
+              01 / Advisory
+            </span>
+            <div className="relative w-full aspect-[4/3] md:aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden border border-[#E3E7E7]">
+              <Image src="/advisory.jpg" alt="Strategic Advisory" fill className="object-cover" />
+            </div>
+          </div>
+          <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A] space-y-8 font-mulish leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
+              <h2 className="text-3xl md:text-[32px] font-bold text-teal-800 mb-10 leading-[1.2]">
+              For businesses that need more than another campaign.
+            </h2>
+            <div className="space-y-6">
+              <p>Many business problems are treated like marketing problems.</p>
+              <div className="space-y-1">
+                <p>But sometimes the real issue is positioning.</p>
+                <p>Or customer behaviour.</p>
+                <p>Or retention.</p>
+                <p>Or unclear growth priorities.</p>
+                <p>Or a marketing function that is busy but not moving the business forward.</p>
+              </div>
+              <p>
+                I work with founders, leadership teams and growth teams to diagnose the real problem, sharpen the strategy and build practical routes to growth.
               </p>
             </div>
             <div className="pt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#439aa9] hover:text-[#054753] dark:hover:text-white transition-colors"
-              >
-                <span className="link-hover">Inquire About Engagement</span> &rarr;
-              </Link>
+              <InquiryModalTrigger buttonText="Start A Conversation" defaultType="Strategic Advisory" />
             </div>
           </div>
-        ))}
-      </div>
+        </section>
 
-      <div className="p-10 md:p-14 rounded-3xl bg-gradient-to-r from-[#054753] to-[#022930] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl border border-[#439aa9]/30">
-        <div className="space-y-2 max-w-xl">
-          <h2 className="text-2xl md:text-3xl font-bold">
-            Ready to Architect Your Brand Ecosystem?
-          </h2>
-          <p className="text-slate-300 text-sm md:text-base">
-            Let’s discuss your current trajectory and determine how Brandforge methodologies can accelerate your strategic impact.
-          </p>
-        </div>
-        <Link
-          href="/contact"
-          className="px-8 py-4 rounded-xl bg-[#439aa9] hover:bg-[#62b6c4] text-white font-semibold text-sm transition-all shadow-lg shrink-0"
-        >
-          Book a Consultation
-        </Link>
+        {/* 02: Speaking */}
+        <section className="mb-32 md:mb-40 border-t border-[#E3E7E7] pt-16 grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-4 flex flex-col gap-8">
+            <span className="font-montserrat text-teal-500 font-semibold text-[13px] uppercase tracking-[0.08em]">
+              02 / Speaking
+            </span>
+            <div className="relative w-full aspect-[4/3] md:aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden border border-[#E3E7E7]">
+              <Image src="/speaking.jpg" alt="Speaking and Keynotes" fill className="object-cover" />
+            </div>
+          </div>
+          <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A] space-y-8 font-mulish leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
+              <h2 className="text-3xl md:text-[32px] font-bold text-teal-800 mb-10 leading-[1.2]">
+              Looking for a speaker who talks about marketing differently?
+            </h2>
+            <div className="space-y-6">
+              <div className="space-y-1">
+                <p>I speak on marketing, growth, leadership and career development.</p>
+                <p>No buzzwords.</p>
+                <p>No recycled slides.</p>
+                <p>Just practical ideas drawn from real experience.</p>
+              </div>
+              <p>
+                Whether it’s a conference, leadership retreat, university or internal team session, every conversation is designed to leave people thinking differently.
+              </p>
+            </div>
+            <div className="pt-8">
+              <InquiryModalTrigger buttonText="Invite Me to Speak" defaultType="Speaking & Keynotes" />
+            </div>
+          </div>
+        </section>
+
+        {/* 03: Training */}
+        <section className="mb-24 border-t border-[#E3E7E7] pt-16 grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-4 flex flex-col gap-8">
+            <span className="font-montserrat text-teal-500 font-semibold text-[13px] uppercase tracking-[0.08em]">
+              03 / Training
+            </span>
+            <div className="relative w-full aspect-[4/3] md:aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden border border-[#E3E7E7]">
+              <Image src="/training.jpg" alt="Corporate Training" fill className="object-cover" />
+            </div>
+          </div>
+          <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A] space-y-8 font-mulish leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
+              <h2 className="text-3xl md:text-[32px] font-bold text-teal-800 mb-10 leading-[1.2]">
+              Helping marketing teams think better and execute stronger.
+            </h2>
+            <div className="space-y-6">
+              <p>Great marketing teams are not built by activity alone.</p>
+              <p>They are built through better thinking, stronger judgement, clearer strategy and sharper execution.</p>
+              <p>
+                I design and facilitate practical training sessions for marketing teams, growth teams and organisations that want to improve capability, confidence and business impact.
+              </p>
+            </div>
+            <div className="pt-8">
+              <InquiryModalTrigger buttonText="Discuss a Training Session" defaultType="Corporate Training" />
+            </div>
+          </div>
+        </section>
+
       </div>
-    </div>
+    </main>
   );
 }
