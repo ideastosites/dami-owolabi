@@ -134,7 +134,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center">
           <Link
             href="/contact"
-            className="rounded-full border-2 border-[#054753] text-[#054753] hover:bg-[#054753] hover:text-white font-mulish font-semibold text-sm px-7 py-3 transition-colors duration-200"
+            className="rounded-full border-2 border-[#054753] text-[#054753] hover:bg-[#054753] hover:text-white font-roc font-semibold text-sm px-7 py-3 transition-colors duration-200"
           >
             Contact Me
           </Link>
@@ -254,7 +254,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center rounded-full border-2 border-[#054753] text-[#054753] hover:bg-[#054753] hover:text-white font-mulish font-semibold text-sm py-3.5 transition-colors"
+              className="block w-full text-center rounded-full border-2 border-[#054753] text-[#054753] hover:bg-[#054753] hover:text-white font-roc font-semibold text-sm py-3.5 transition-colors"
             >
               Contact Me
             </Link>
