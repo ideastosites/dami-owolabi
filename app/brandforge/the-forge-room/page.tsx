@@ -19,7 +19,7 @@ export default function TheForgeRoomPage() {
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW (Image + Typography Split)
       ========================================================= */}
-      <section className="relative flex flex-col justify-center py-16 md:py-24">
+      <section className="relative flex flex-col justify-center py-12 md:py-16">
         
         {/* Navigation */}
         <div className="absolute top-8 left-4 sm:left-8 z-20">
@@ -66,7 +66,7 @@ export default function TheForgeRoomPage() {
                 <div className="pt-2">
                   <a
                     href="#application-form"
-                    className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden"
+                    className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                   >
                     <span className="relative z-10">Apply Now</span>
                     <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
@@ -78,17 +78,8 @@ export default function TheForgeRoomPage() {
             {/* Right Column (6 cols): Asymmetric Image Placeholder */}
             <div className="lg:col-span-6 w-full relative">
               <Reveal delay={0.1}>
-                <div className="aspect-[4/5] max-h-[600px] bg-[#F7F8F8] relative overflow-hidden flex items-center justify-center">
-                  {/* Architectural Frame */}
-                  <div className="absolute inset-4 border border-[#E3E7E7] z-10 pointer-events-none" />
-                  <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-[#054753] z-10" />
-                  <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-[#054753] z-10" />
-                  
-                  {/* Placeholder Graphic */}
-                  <div className="absolute inset-0 opacity-5 bg-[linear-gradient(45deg,_#054753_25%,_transparent_25%,_transparent_50%,_#054753_50%,_#054753_75%,_transparent_75%,_transparent_100%)] bg-[length:20px_20px]" />
-                  <span className="font-sans font-bold text-[#054753]/20 text-3xl uppercase tracking-widest relative z-20">
-                    Image Focus
-                  </span>
+                <div className="aspect-[4/5] max-h-[600px] relative overflow-hidden border border-[#E3E7E7] rounded-2xl">
+                  <Image src="/forgeroom.jpg" alt="The Forge Room" fill className="object-cover" priority />
                 </div>
               </Reveal>
               
@@ -107,7 +98,7 @@ export default function TheForgeRoomPage() {
       {/* =========================================================
           SECTION 02: DRAMATIC DARK IMPACT STATEMENT
       ========================================================= */}
-      <section className="py-16 md:py-24 bg-[#02232A] text-white">
+      <section className="py-12 md:py-16 bg-[#02232A] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           
           <Reveal>
@@ -136,9 +127,9 @@ export default function TheForgeRoomPage() {
       {/* =========================================================
           SECTION 03: PROGRAM OUTCOMES (Asymmetric Grid)
       ========================================================= */}
-      <section className="py-16 md:py-24 bg-[#F7F8F8]">
+      <section className="py-12 md:py-16 bg-[#F7F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
             
             {/* What You Will Get */}
             <div className="md:col-span-5 space-y-8">
@@ -203,11 +194,11 @@ export default function TheForgeRoomPage() {
       {/* =========================================================
           SECTION 04: APPLICATION FORM (Editorial Style)
       ========================================================= */}
-      <section id="application-form" className="py-16 md:py-24 bg-white relative">
+      <section id="application-form" className="py-12 md:py-16 bg-white relative">
         <div className="absolute top-0 left-0 w-full h-px bg-[linear-gradient(to_right,transparent,#E3E7E7_20%,#E3E7E7_80%,transparent)]" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             
             {/* Form Info Context */}
             <div className="space-y-10 lg:sticky lg:top-32">
@@ -246,7 +237,7 @@ export default function TheForgeRoomPage() {
               <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#02232A]" />
               
               {submitted ? (
-                <div className="py-16 text-center space-y-4">
+                <div className="py-12 text-center space-y-4">
                   <div className="w-px h-10 bg-[#439aa9] mx-auto" />
                   <h3 className="font-sans font-bold text-2xl text-[#02232A]">
                     Application Received
@@ -331,7 +322,7 @@ export default function TheForgeRoomPage() {
                   <div className="pt-6">
                     <button
                       type="submit"
-                      className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden"
+                      className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                     >
                       <span className="relative z-10">Submit Application</span>
                       <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />

@@ -21,7 +21,7 @@ export default function TheBrandforgeNetworkPage() {
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW 
       ========================================================= */}
-      <section className="relative py-16 md:py-24 border-b border-[#E3E7E7] overflow-hidden">
+      <section className="relative py-12 md:py-16 border-b border-[#E3E7E7] overflow-hidden">
         
         {/* Navigation */}
         <div className="absolute top-8 left-4 sm:left-8 z-20">
@@ -35,7 +35,7 @@ export default function TheBrandforgeNetworkPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-12 md:mt-0 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
             
             {/* Left Column (6 cols): Editorial Typographic Hero */}
             <div className="lg:col-span-6 space-y-8 relative z-10 pt-12 lg:pt-0">
@@ -65,7 +65,7 @@ export default function TheBrandforgeNetworkPage() {
                 <div className="pt-2">
                   <a
                     href="#apply-network"
-                    className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden"
+                    className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                   >
                     <span className="relative z-10">Apply to Join</span>
                     <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
@@ -112,7 +112,7 @@ export default function TheBrandforgeNetworkPage() {
       {/* =========================================================
           SECTION 02: WHAT'S INSIDE (Editorial Grid)
       ========================================================= */}
-      <section className="py-16 md:py-24 bg-[#F7F8F8]">
+      <section className="py-12 md:py-16 bg-[#F7F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">

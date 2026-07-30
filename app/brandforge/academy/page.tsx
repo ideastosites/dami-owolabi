@@ -9,6 +9,7 @@ import Reveal from "@/components/Reveal";
 const courses = [
   {
     id: "interview-prep",
+    image: "/interview_prep.jpg",
     title: "Interview Prep Sprint",
     duration: "2 Sessions",
     desc: "A focused 2 session course for marketing professionals with an upcoming interview who need clearer answers, stronger positioning and practical preparation before the conversation.",
@@ -54,6 +55,7 @@ const courses = [
   },
   {
     id: "strategy-session",
+    image: "/11 Strategy Session.jpg",
     title: "1:1 Strategy Session with Dami",
     duration: "90 Minutes",
     desc: "Get clear, practical guidance on your career, brand, business or marketing challenge.",
@@ -100,6 +102,7 @@ const courses = [
   },
   {
     id: "switching-into-marketing",
+    image: "/Switching Into Marketing.jpg",
     title: "Switching Into Marketing",
     duration: "2 Days",
     desc: "A practical course for career switchers who want to move into marketing, digital marketing or brand management with clarity, confidence and the right positioning.",
@@ -145,6 +148,7 @@ const courses = [
   },
   {
     id: "commercial-marketing",
+    image: "/Commercial Marketing & Growth.jpg",
     title: "Commercial Marketing & Growth",
     duration: "2 Days",
     desc: "A practical course for marketers, founders and business professionals who want to understand how marketing connects to revenue, customer growth, retention and business performance.",
@@ -222,7 +226,7 @@ export default function BrandforgeAcademyPage() {
       {/* =========================================================
           SECTION 01: HERO & MANIFESTO 
       ========================================================= */}
-      <section className="relative py-16 md:py-24 border-b border-[#E3E7E7] overflow-hidden">
+      <section className="relative py-12 md:py-16 border-b border-[#E3E7E7] overflow-hidden">
         
         <div className="absolute top-8 left-4 sm:left-8 z-20">
           <Link
@@ -293,7 +297,7 @@ export default function BrandforgeAcademyPage() {
       {/* =========================================================
           SECTION 02: AVAILABLE COURSES
       ========================================================= */}
-      <section className="py-16 md:py-24 bg-[#F7F8F8]">
+      <section className="py-12 md:py-16 bg-[#F7F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           <Reveal>
@@ -311,12 +315,8 @@ export default function BrandforgeAcademyPage() {
                 <div 
                   className="group flex flex-col bg-white border border-[#E3E7E7] overflow-hidden hover:border-[#054753] transition-all duration-300 shadow-sm relative h-full"
                 >
-                {/* Image Placeholder area */}
-                <div className="w-full aspect-[4/3] bg-[#02232A] relative overflow-hidden flex items-center justify-center">
-                  <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#439aa9_2px,_transparent_2px)] bg-[size:24px_24px]" />
-                  <span className="font-sans font-bold text-white/20 text-5xl uppercase tracking-widest relative z-20 transition-transform duration-700 group-hover:scale-110">
-                    C0{idx + 1}
-                  </span>
+                <div className="w-full aspect-[4/3] bg-[#F7F8F8] relative overflow-hidden border-b border-[#E3E7E7]">
+                  <Image src={course.image} alt={course.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
 
                 <div className="flex flex-col flex-grow p-6 sm:p-8 space-y-6">
@@ -349,7 +349,7 @@ export default function BrandforgeAcademyPage() {
 
                     <button
                       onClick={() => openModal(course)}
-                      className="w-full relative flex items-center justify-center px-4 py-3 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden group/btn"
+                      className="w-full relative flex items-center justify-center px-4 py-3 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden group/btn rounded-full"
                     >
                       <span className="relative z-10">View Details</span>
                       <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover/btn:scale-x-100 transition-transform duration-300 ease-out" />
@@ -448,7 +448,7 @@ export default function BrandforgeAcademyPage() {
                         <input type="text" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
                       </div>
                       <div className="pt-6">
-                        <button type="submit" className="w-full py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase hover:bg-[#054753] transition-colors">
+                        <button type="submit" className="w-full py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase hover:bg-[#054753] transition-colors rounded-full">
                           Submit Application
                         </button>
                         <button 
@@ -520,7 +520,7 @@ export default function BrandforgeAcademyPage() {
                 </div>
                 <button
                   onClick={handleBookClick}
-                  className="group relative flex items-center justify-center px-8 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden"
+                  className="group relative flex items-center justify-center px-8 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                 >
                   <span className="relative z-10">Book This Course</span>
                   <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />

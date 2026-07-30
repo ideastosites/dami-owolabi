@@ -51,7 +51,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Dami Owolabi — Marketing Leader, Growth Strategist, Brand Builder",
   description:
-    "Dami Owolabi works at the intersection of marketing, growth and business — helping brands grow smarter and marketers become hard to ignore.",
+    "Dami Owolabi works at the intersection of marketing, growth and business strategy — helping brands grow smarter and marketers become hard to ignore.",
 };
 
 export default function RootLayout({

@@ -2,7 +2,7 @@
 
 import { useForm, Controller } from "react-hook-form";
 import Link from "next/link";
-import { FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaTwitter } from "react-icons/fa";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Loader2 } from "lucide-react";
@@ -38,8 +38,8 @@ export default function ContactPage() {
     const today = new Date().toISOString().split("T")[0];
 
     return (
-        <section className="w-full bg-white flex justify-center py-16 md:py-24 px-6 md:px-10 lg:px-20">
-            <div className="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <section className="w-full bg-white flex justify-center py-12 md:py-16 px-6 md:px-10 lg:px-20">
+            <div className="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
                 {/* Left Column - Copy & Details */}
                 <div className="lg:col-span-5 flex flex-col justify-center space-y-10">
@@ -83,6 +83,15 @@ export default function ContactPage() {
                                 >
                                     <FaInstagram size={24} className="group-hover:text-[#439aa9] transition-colors" />
                                     <span className="font-sans text-lg">Instagram</span>
+                                </Link>
+                                <Link
+                                    href="https://x.com/dami_owoo?s=11&t=jrS1pT9q2g6i1hzC0_rdig"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-2 text-[#0A0A0A]/90 hover:text-[#439aa9] transition-colors duration-200 group"
+                                >
+                                    <FaTwitter size={24} className="group-hover:text-[#439aa9] transition-colors" />
+                                    <span className="font-sans text-lg">Twitter</span>
                                 </Link>
                             </div>
                         </div>
@@ -216,7 +225,7 @@ export default function ContactPage() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="relative flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden group w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="relative flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden group w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed rounded-full"
                                 >
                                     <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                                     <div className="relative z-10 flex items-center">
