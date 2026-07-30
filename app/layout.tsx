@@ -68,8 +68,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body suppressHydrationWarning className="min-h-screen flex flex-col bg-white text-[#0A0A0A] font-sans selection:bg-[#439aa9]/20 selection:text-[#054753]">
+        <div aria-hidden className="grain-overlay" />
         <PageGlow />
-        <div aria-hidden className="grain-overlay z-0" />
         <Navbar />
         <main className="flex-grow flex flex-col relative z-10">{children}</main>
         <Footer />
