@@ -14,7 +14,7 @@ export default function TheForgeRoomPage() {
   };
 
   return (
-    <div className="w-full bg-white text-[#0A0A0A] font-sans">
+    <div className="w-full text-[#0A0A0A] font-sans">
       
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW (Image + Typography Split)
@@ -98,7 +98,7 @@ export default function TheForgeRoomPage() {
       {/* =========================================================
           SECTION 02: DRAMATIC DARK IMPACT STATEMENT
       ========================================================= */}
-      <section className="py-12 md:py-16 bg-[#02232A] text-white">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-[#02232A] to-[#054753] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           
           <Reveal>

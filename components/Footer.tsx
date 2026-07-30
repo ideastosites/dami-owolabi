@@ -49,7 +49,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-[#02232A] text-white mt-auto">
+    <footer className="relative overflow-hidden bg-gradient-to-br from-[#02232A] to-[#054753] text-white mt-auto">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-40"
