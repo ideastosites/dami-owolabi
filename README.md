@@ -23,4 +23,4 @@ Your task is to build the [INSERT YOUR PAGE NAME] page.
 3. Use the global `<Navbar>` and `<Footer>` components that already exist in the layout file. Do not regenerate or override them.
 4. Ensure all styling strictly adheres to the Tailwind configuration and the `DESIGN_SYSTEM.md` guidelines.
 
-Output the component code for this page."
+Output the component code for this page.
