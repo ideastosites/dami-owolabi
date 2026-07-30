@@ -36,7 +36,7 @@ export default function BrandforgeOverviewPage() {
       {/* =========================================================
           SECTION 01: HERO MANIFESTO (What is BrandForge)
       ========================================================= */}
-      <section className="relative overflow-hidden py-16 md:py-24 border-b border-[#E3E7E7]">
+      <section className="relative overflow-hidden py-12 md:py-16 border-b border-[#E3E7E7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">

@@ -25,7 +25,7 @@ export default function HomePage() {
                         <br />
                         Owolabi
                     </h1>
-                    <p className="mt-5 font-mulish text-lg font-semibold text-[#054753] sm:text-xl">
+                    <p className="mt-5 font-sans text-lg font-semibold text-[#054753] sm:text-xl">
                         Marketing Leader
                         <span className="mx-3 text-xl font-bold text-[#6B7573] sm:text-2xl">
                             &middot;
@@ -42,7 +42,7 @@ export default function HomePage() {
                     <IntersectionStatement />
                     <Link
                         href="/work-with-me"
-                        className="mx-auto mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#054753] px-7 py-3.5 font-mulish text-sm font-semibold text-white transition-colors hover:bg-[#439aa9] sm:mx-0 sm:mt-12"
+                        className="mx-auto mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#054753] px-7 py-3.5 font-roc text-sm font-semibold text-white transition-colors hover:bg-[#439aa9] sm:mx-0 sm:mt-12"
                     >
                         Work With Me
                     </Link>
@@ -84,7 +84,7 @@ export default function HomePage() {
                             <p className="mt-6">
                                 My work has cut across fintech, payments, QSR, retail, consumer
                                 brands, Web3 and the agency-led marketing, with experience
-                                across Nigeria, Ghana, Kenya and the United Kingdom.
+                                across West Africa, East Africa and the United Kingdom.
                             </p>
                         </div>
 
@@ -103,14 +103,14 @@ export default function HomePage() {
                     >
                         {[
                             ["10+", "Years"],
-                            ["7", "Industries"],
-                            ["4", "Countries"],
+                            ["7+", "Industries"],
+                            ["6+", "Countries"],
                         ].map(([value, label]) => (
                             <div key={label}>
                                 <span className="block font-sans text-6xl font-extrabold leading-none tracking-[-0.02em] text-[#054753] sm:text-7xl">
                                     {value}
                                 </span>
-                                <span className="mt-3 block font-mulish text-xs font-semibold uppercase tracking-[0.08em] text-[#6B7573] sm:text-sm">
+                                <span className="mt-3 block font-roc text-xs font-semibold uppercase tracking-[0.08em] text-[#6B7573] sm:text-sm">
                                     {label}
                                 </span>
                             </div>

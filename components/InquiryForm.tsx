@@ -52,10 +52,10 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
       {/* Sticky Header */}
       <div className="flex items-center justify-between px-6 py-5 md:px-10 md:py-6 border-b border-[#E3E7E7] shrink-0 bg-white z-10">
         <div>
-          <span className="text-[10px] font-montserrat font-bold uppercase tracking-widest text-[#439aa9] block mb-1">
+          <span className="text-[10px] font-roc font-bold uppercase tracking-widest text-[#439aa9] block mb-1">
             Engagement Inquiry
           </span>
-          <h2 className="text-xl md:text-2xl font-bold text-[#054753] font-mulish">
+          <h2 className="text-xl md:text-2xl font-bold text-[#02232A] font-sans">
             {defaultType}
           </h2>
         </div>
@@ -79,10 +79,10 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
         <div className="max-w-2xl mx-auto">
           
           <div className="text-center mb-16 space-y-4">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#054753] font-mulish">
+            <h3 className="text-3xl md:text-4xl font-bold text-[#02232A] font-sans">
               Start a Conversation
             </h3>
-            <p className="text-sm md:text-base text-slate-500 font-mulish">
+            <p className="text-sm md:text-base text-[#6B7573] font-sans">
               Fill out the form below and I will get back to you regarding <span className="font-semibold text-[#054753]">{selectedType}</span>.
             </p>
           </div>
@@ -90,28 +90,28 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
             
             <div>
-              <label htmlFor="name" className="text-[11px] font-montserrat font-bold uppercase tracking-[0.15em] text-[#054753] block mb-4">
+              <label htmlFor="name" className="text-[11px] font-roc font-semibold uppercase tracking-[0.15em] text-[#054753] block mb-4">
                 Full Name
               </label>
               <input
                 id="name"
                 type="text"
-                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] placeholder-slate-300 focus:outline-none focus:border-teal-600 transition-colors font-mulish text-base"
+                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] placeholder-[#6B7573] focus:outline-none focus:border-[#054753] transition-colors font-sans text-base"
                 {...register("name", { required: "Name is required" })}
               />
               {errors.name && (
-                <p className="text-red-500 text-xs mt-2 font-mulish">{errors.name.message}</p>
+                <p className="text-[#02232A] text-xs mt-2 font-sans">{errors.name.message}</p>
               )}
             </div>
             
             <div>
-              <label htmlFor="email" className="text-[11px] font-montserrat font-bold uppercase tracking-[0.15em] text-[#054753] block mb-4">
+              <label htmlFor="email" className="text-[11px] font-roc font-semibold uppercase tracking-[0.15em] text-[#054753] block mb-4">
                 Email Address
               </label>
               <input
                 id="email"
                 type="email"
-                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] placeholder-slate-300 focus:outline-none focus:border-teal-600 transition-colors font-mulish text-base"
+                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] placeholder-[#6B7573] focus:outline-none focus:border-[#054753] transition-colors font-sans text-base"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -121,17 +121,17 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
                 })}
               />
               {errors.email && (
-                <p className="text-red-500 text-xs mt-2 font-mulish">{errors.email.message}</p>
+                <p className="text-[#02232A] text-xs mt-2 font-sans">{errors.email.message}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="engagementType" className="text-[11px] font-montserrat font-bold uppercase tracking-[0.15em] text-[#054753] block mb-4">
+              <label htmlFor="engagementType" className="text-[11px] font-roc font-semibold uppercase tracking-[0.15em] text-[#054753] block mb-4">
                 Engagement Type
               </label>
               <select
                 id="engagementType"
-                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] focus:outline-none focus:border-teal-600 transition-colors font-mulish text-base appearance-none cursor-pointer"
+                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] focus:outline-none focus:border-[#054753] transition-colors font-sans text-base appearance-none cursor-pointer"
                 {...register("engagementType", { required: "Please select an engagement type" })}
               >
                 <option value="Strategic Advisory">Strategic Advisory</option>
@@ -139,22 +139,22 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
                 <option value="Corporate Training">Corporate Training</option>
               </select>
               {errors.engagementType && (
-                <p className="text-red-500 text-xs mt-2 font-mulish">{errors.engagementType.message}</p>
+                <p className="text-[#02232A] text-xs mt-2 font-sans">{errors.engagementType.message}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="message" className="text-[11px] font-montserrat font-bold uppercase tracking-[0.15em] text-[#054753] block mb-4">
+              <label htmlFor="message" className="text-[11px] font-roc font-semibold uppercase tracking-[0.15em] text-[#054753] block mb-4">
                 Message
               </label>
               <textarea
                 id="message"
                 rows={3}
-                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] placeholder-slate-300 focus:outline-none focus:border-teal-600 transition-colors resize-none font-mulish text-base"
+                className="w-full border-b border-[#E3E7E7] bg-transparent pb-3 text-[#0A0A0A] placeholder-[#6B7573] focus:outline-none focus:border-[#054753] transition-colors resize-none font-sans text-base"
                 {...register("message", { required: "Message is required" })}
               ></textarea>
               {errors.message && (
-                <p className="text-red-500 text-xs mt-2 font-mulish">{errors.message.message}</p>
+                <p className="text-[#02232A] text-xs mt-2 font-sans">{errors.message.message}</p>
               )}
             </div>
             
@@ -162,14 +162,17 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-block bg-[#054753] text-white font-montserrat font-semibold px-10 py-4 rounded-[6px] hover:bg-[#022930] transition-all disabled:opacity-50 text-sm uppercase tracking-wider w-full md:w-auto"
+                className="relative flex items-center justify-center bg-[#02232A] text-white font-roc font-bold px-10 py-4 overflow-hidden group disabled:opacity-50 text-sm uppercase tracking-wider w-full md:w-auto rounded-full"
               >
-                {isSubmitting ? "Submitting..." : "Send Inquiry"}
+                <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                <span className="relative z-10">
+                  {isSubmitting ? "Submitting..." : "Send Inquiry"}
+                </span>
               </button>
             </div>
 
             {isSuccess && (
-              <p className="text-teal-600 text-sm font-medium font-mulish mt-4">
+              <p className="text-[#439aa9] text-sm font-medium font-sans mt-4">
                 Thank you! Your message has been received.
               </p>
             )}

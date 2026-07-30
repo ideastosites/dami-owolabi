@@ -15,9 +15,12 @@ export default function InquiryModalTrigger({ buttonText, defaultType = "Advisor
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="inline-block bg-teal-800 text-white font-montserrat font-semibold px-8 py-4 rounded-[6px] hover:bg-teal-700 transition-colors text-sm uppercase tracking-wider"
+        className="relative flex items-center justify-center bg-[#02232A] text-white font-roc font-bold px-8 py-4 overflow-hidden group text-sm uppercase tracking-wider w-full md:w-auto rounded-full"
       >
-        {buttonText}
+        <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+        <span className="relative z-10">
+          {buttonText}
+        </span>
       </button>
 
       {isOpen && (

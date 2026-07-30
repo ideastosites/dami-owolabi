@@ -19,7 +19,7 @@ export default function BrandforgeRoundtablePage() {
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW 
       ========================================================= */}
-      <section className="relative flex flex-col justify-center py-16 md:py-24 border-b border-[#E3E7E7]">
+      <section className="relative flex flex-col justify-center py-12 md:py-16 border-b border-[#E3E7E7]">
         
         {/* Navigation */}
         <div className="absolute top-8 left-4 sm:left-8 z-20">
@@ -63,7 +63,7 @@ export default function BrandforgeRoundtablePage() {
                 <div className="pt-2">
                   <a
                     href="#register-form"
-                    className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden"
+                    className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                   >
                     <span className="relative z-10">Register Interest</span>
                     <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
@@ -75,13 +75,8 @@ export default function BrandforgeRoundtablePage() {
             {/* Right Column (6 cols): Asymmetric Image Placeholder */}
             <div className="lg:col-span-6 w-full relative">
               <Reveal delay={0.1}>
-                <div className="aspect-[4/5] max-h-[600px] bg-[#F7F8F8] relative overflow-hidden flex items-center justify-center border border-[#E3E7E7]">
-                  
-                  {/* Placeholder Graphic */}
-                  <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#054753_1px,_transparent_1px)] bg-[size:16px_16px]" />
-                  <span className="font-sans font-bold text-[#054753]/20 text-3xl uppercase tracking-widest relative z-20">
-                    Event Photo
-                  </span>
+                <div className="aspect-[4/5] max-h-[600px] relative overflow-hidden border border-[#E3E7E7] rounded-2xl">
+                  <Image src="/Roundtable.jpg" alt="BrandForge Roundtable" fill className="object-cover" priority />
                 </div>
               </Reveal>
             </div>
@@ -93,7 +88,7 @@ export default function BrandforgeRoundtablePage() {
       {/* =========================================================
           SECTION 02: DRAMATIC DARK IMPACT STATEMENT
       ========================================================= */}
-      <section className="py-16 md:py-24 bg-[#02232A] text-white relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-[#02232A] text-white relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
           <Reveal>
             <div className="w-px h-12 bg-[#439aa9] mx-auto" />
@@ -122,9 +117,9 @@ export default function BrandforgeRoundtablePage() {
       {/* =========================================================
           SECTION 03: THE GOAL (Asymmetric List)
       ========================================================= */}
-      <section className="py-16 md:py-24 bg-[#F7F8F8]">
+      <section className="py-12 md:py-16 bg-[#F7F8F8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             
             <div className="md:col-span-5 space-y-8 lg:sticky lg:top-32">
               <Reveal>
@@ -173,11 +168,11 @@ export default function BrandforgeRoundtablePage() {
       {/* =========================================================
           SECTION 04: APPLICATION FORM 
       ========================================================= */}
-      <section id="register-form" className="py-16 md:py-24 bg-white relative">
+      <section id="register-form" className="py-12 md:py-16 bg-white relative">
         <div className="absolute top-0 left-0 w-full h-px bg-[linear-gradient(to_right,transparent,#E3E7E7_20%,#E3E7E7_80%,transparent)]" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             
             {/* Form Info Context */}
             <div className="space-y-8 lg:sticky lg:top-32">
@@ -206,7 +201,7 @@ export default function BrandforgeRoundtablePage() {
                 <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#02232A]" />
                 
                 {submitted ? (
-                  <div className="py-16 text-center space-y-4">
+                  <div className="py-12 text-center space-y-4">
                     <div className="w-px h-10 bg-[#439aa9] mx-auto" />
                     <h3 className="font-sans font-bold text-2xl text-[#02232A]">
                       Interest Registered
@@ -254,7 +249,7 @@ export default function BrandforgeRoundtablePage() {
                     </div>
 
                     <div className="pt-6">
-                      <button type="submit" className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden">
+                      <button type="submit" className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full">
                         <span className="relative z-10">Register Interest</span>
                         <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                       </button>

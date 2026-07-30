@@ -14,9 +14,9 @@ export default function Navbar() {
 
   const brandForgeLinks = [
     { label: "What is BrandForge", href: "/brandforge" },
-    { label: "The Forge Room", href: "/brandforge/the-forge-room" },
-    { label: "The BrandForge Network", href: "/brandforge/the-brandforge-network" },
-    { label: "The BrandForge Academy", href: "/brandforge/academy" },
+    { label: "Forge Room", href: "/brandforge/the-forge-room" },
+    { label: "BrandForge Network", href: "/brandforge/the-brandforge-network" },
+    { label: "BrandForge Academy", href: "/brandforge/academy" },
     { label: "BrandForge Roundtable", href: "/brandforge/roundtable" },
   ];
 
