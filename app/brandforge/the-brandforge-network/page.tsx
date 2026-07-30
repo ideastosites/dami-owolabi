@@ -5,18 +5,42 @@ import Image from "next/image";
 
 export default function TheBrandforgeNetworkPage() {
   const benefits = [
-    "Marketing and growth discussions",
-    "Industry insights and emerging trends",
-    "Career opportunities and job openings",
-    "Recommended books, articles and learning resources",
-    "Templates and practical frameworks",
-    "Feedback on ideas, campaigns and presentations",
-    "Networking with marketers across industries",
-    "Priority access to future BrandForge events and experiences"
+    {
+      text: "Marketing and growth discussions",
+      icon: "Marketing and growth discussions.svg"
+    },
+    {
+      text: "Industry insights and emerging trends",
+      icon: "Industry insights.svg"
+    },
+    {
+      text: "Career opportunities and job openings",
+      icon: "Career opportunities and job openings.svg"
+    },
+    {
+      text: "Recommended books, articles and learning resources",
+      icon: "Recommended books.svg"
+    },
+    {
+      text: "Templates and practical frameworks",
+      icon: "Templates and practical frameworks.svg"
+    },
+    {
+      text: "Feedback on ideas, campaigns and presentations",
+      icon: "Feedback on ideas.svg"
+    },
+    {
+      text: "Networking with marketers across industries",
+      icon: "Networking with marketers across industries.svg"
+    },
+    {
+      text: "Priority access to future BrandForge events and experiences",
+      icon: "Priority access.svg"
+    }
   ];
 
   return (
-    <div className="w-full bg-white text-[#0A0A0A] font-sans min-h-screen">
+    <div className="w-full text-[#0A0A0A] font-sans min-h-screen">
       
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW 
@@ -131,19 +155,23 @@ export default function TheBrandforgeNetworkPage() {
                 key={idx} 
                 className="bg-white p-8 group hover:bg-[#02232A] transition-colors duration-300 flex flex-col justify-between min-h-[160px]"
               >
-                <div className="mb-4">
-                  <svg 
-                    className="w-6 h-6 text-[#054753] group-hover:text-[#439aa9] transition-colors duration-300" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
-                    strokeWidth="2.5"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
+                <div className="mb-8">
+                  <div 
+                    className="w-12 h-12 bg-[#054753] group-hover:bg-[#439aa9] transition-colors duration-300"
+                    style={{
+                      WebkitMaskImage: `url('/Brandforge network icons/${benefit.icon}')`,
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'left center',
+                      maskImage: `url('/Brandforge network icons/${benefit.icon}')`,
+                      maskSize: 'contain',
+                      maskRepeat: 'no-repeat',
+                      maskPosition: 'left center',
+                    }}
+                  />
                 </div>
                 <span className="font-sans text-base text-[#0A0A0A]/90 group-hover:text-white leading-relaxed font-medium transition-colors duration-300">
-                  {benefit}
+                  {benefit.text}
                 </span>
               </div>
             ))}

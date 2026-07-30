@@ -38,7 +38,7 @@ export default function ContactPage() {
     const today = new Date().toISOString().split("T")[0];
 
     return (
-        <section className="w-full bg-white flex justify-center py-12 md:py-16 px-6 md:px-10 lg:px-20">
+        <section className="w-full flex justify-center py-12 md:py-16 px-6 md:px-10 lg:px-20">
             <div className="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
                 {/* Left Column - Copy & Details */}
@@ -71,14 +71,18 @@ export default function ContactPage() {
                             </span>
                             <div className="flex space-x-6">
                                 <Link
-                                    href="#"
+                                    href="https://www.linkedin.com/in/dami-owolabi-93426717/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="flex items-center space-x-2 text-[#0A0A0A]/90 hover:text-[#439aa9] transition-colors duration-200 group"
                                 >
                                     <FaLinkedin size={24} className="group-hover:text-[#439aa9] transition-colors" />
                                     <span className="font-sans text-lg">LinkedIn</span>
                                 </Link>
                                 <Link
-                                    href="#"
+                                    href="https://www.instagram.com/brandforgeofficial/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="flex items-center space-x-2 text-[#0A0A0A]/90 hover:text-[#439aa9] transition-colors duration-200 group"
                                 >
                                     <FaInstagram size={24} className="group-hover:text-[#439aa9] transition-colors" />

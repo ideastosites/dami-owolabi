@@ -221,7 +221,7 @@ export default function BrandforgeAcademyPage() {
   };
 
   return (
-    <div className="w-full bg-white text-[#0A0A0A] font-sans min-h-screen relative">
+    <div className="w-full text-[#0A0A0A] font-sans min-h-screen relative">
       
       {/* =========================================================
           SECTION 01: HERO & MANIFESTO 
@@ -274,7 +274,7 @@ export default function BrandforgeAcademyPage() {
             {/* Right Column: Statement Box */}
             <div className="w-full lg:w-[40%] relative">
               <Reveal delay={0.2}>
-               <div className="bg-[#02232A] text-white p-8 sm:p-10 border-t-4 border-[#439aa9] shadow-xl relative">
+               <div className="bg-gradient-to-br from-[#02232A] to-[#054753] text-white p-8 sm:p-10 border-t-4 border-[#439aa9] shadow-xl relative">
                   <div className="space-y-4 relative z-10">
                     <p className="font-sans font-bold text-xl sm:text-2xl text-white">
                       No unnecessary theory.

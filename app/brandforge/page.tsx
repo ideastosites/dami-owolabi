@@ -32,7 +32,7 @@ export default function BrandforgeOverviewPage() {
   ];
 
   return (
-    <div className="w-full bg-white text-[#0A0A0A] font-sans min-h-screen">
+    <div className="w-full text-[#0A0A0A] font-sans min-h-screen">
       {/* =========================================================
           SECTION 01: HERO MANIFESTO (What is BrandForge)
       ========================================================= */}
@@ -102,7 +102,7 @@ export default function BrandforgeOverviewPage() {
 
               {/* Ecosystem Directory in a Dark Teal Box */}
               <Reveal delay={0.2}>
-                <div className="bg-[#02232A] rounded-xl p-8 text-white shadow-xl">
+                <div className="bg-gradient-to-br from-[#02232A] to-[#054753] rounded-xl p-8 text-white shadow-xl">
                   <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                     <h3 className="font-roc font-semibold text-xs uppercase tracking-widest text-[#439aa9]">
                       The Ecosystem
