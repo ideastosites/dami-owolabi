@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 export default function BrandforgeRoundtablePage() {
   const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -182,7 +185,7 @@ export default function BrandforgeRoundtablePage() {
                     06 / Register
                   </span>
                   <h2 className="font-sans font-bold text-4xl sm:text-5xl text-[#02232A] tracking-tight leading-[1.1]">
-                    Create rooms where you leave with better thinking.
+                    A room where you leave with better thinking.
                   </h2>
                 </div>
               </Reveal>
@@ -231,7 +234,16 @@ export default function BrandforgeRoundtablePage() {
                       <label htmlFor="whatsapp" className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">
                         WhatsApp number
                       </label>
-                      <input type="tel" id="whatsapp" required placeholder="+234..." className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
+                      <PhoneInput
+                        international
+                        defaultCountry="US"
+                        value={phone}
+                        onChange={setPhone}
+                        placeholder="Enter your WhatsApp number"
+                        className="w-full flex gap-3 sm:gap-4
+                          [&_.PhoneInputCountry]:bg-transparent [&_.PhoneInputCountry]:border-b [&_.PhoneInputCountry]:border-[#E3E7E7] [&_.PhoneInputCountry]:px-0 [&_.PhoneInputCountry]:py-2.5 [&_.PhoneInputCountry]:flex [&_.PhoneInputCountry]:items-center [&_.PhoneInputCountry]:transition-colors
+                          [&_.PhoneInputInput]:flex-1 [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:border-b [&_.PhoneInputInput]:border-[#E3E7E7] [&_.PhoneInputInput]:px-0 [&_.PhoneInputInput]:py-2.5 [&_.PhoneInputInput]:focus:outline-none [&_.PhoneInputInput]:focus:border-[#054753] [&_.PhoneInputInput]:transition-colors [&_.PhoneInputInput]:rounded-none [&_.PhoneInputInput]:text-[#0A0A0A] [&_.PhoneInputInput]:placeholder:text-[#6B7573]/50 [&_.PhoneInputInput]:font-sans [&_.PhoneInputInput]:text-base"
+                      />
                     </div>
 
                     <div className="space-y-2">

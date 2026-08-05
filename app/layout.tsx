@@ -71,7 +71,7 @@ export default function RootLayout({
         <div aria-hidden className="grain-overlay" />
         <PageGlow />
         <Navbar />
-        <main className="flex-grow flex flex-col relative z-10">{children}</main>
+        <main className="flex-grow flex flex-col relative">{children}</main>
         <Footer />
       </body>
     </html>

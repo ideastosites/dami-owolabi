@@ -165,7 +165,7 @@ export default function ContactPage() {
                                             defaultCountry="US"
                                             value={value}
                                             onChange={onChange}
-                                            placeholder="(555) 123-4567"
+                                            placeholder="Enter your WhatsApp number"
                                             className={`w-full flex gap-3 sm:gap-4
                         [&_.PhoneInputCountry]:bg-transparent [&_.PhoneInputCountry]:border-b [&_.PhoneInputCountry]:border-[#E3E7E7] [&_.PhoneInputCountry]:px-0 [&_.PhoneInputCountry]:py-2.5 [&_.PhoneInputCountry]:flex [&_.PhoneInputCountry]:items-center [&_.PhoneInputCountry]:transition-colors
                         [&_.PhoneInputInput]:flex-1 [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:border-b [&_.PhoneInputInput]:border-[#E3E7E7] [&_.PhoneInputInput]:px-0 [&_.PhoneInputInput]:py-2.5 [&_.PhoneInputInput]:focus:outline-none [&_.PhoneInputInput]:focus:border-[#054753] [&_.PhoneInputInput]:transition-colors [&_.PhoneInputInput]:rounded-none [&_.PhoneInputInput]:text-[#0A0A0A] [&_.PhoneInputInput]:placeholder-[#6B7573] [&_.PhoneInputInput]:font-sans [&_.PhoneInputInput]:text-base
