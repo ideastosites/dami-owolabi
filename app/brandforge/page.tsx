@@ -6,19 +6,19 @@ import Reveal from "@/components/Reveal";
 export default function BrandforgeOverviewPage() {
   const directoryLinks = [
     {
-      name: "The Forge Room",
+      name: "Forge Room",
       href: "/brandforge/the-forge-room",
       desc: "A 12-week development experience for ambitious marketers.",
       numeral: "01",
     },
     {
-      name: "The BrandForge Network",
+      name: "BrandForge Network",
       href: "/brandforge/the-brandforge-network",
       desc: "A growing professional network for marketers committed to learning and sharing.",
       numeral: "02",
     },
     {
-      name: "The BrandForge Academy",
+      name: "BrandForge Academy",
       href: "/brandforge/academy",
       desc: "Practical courses for people who want to think better and grow stronger.",
       numeral: "03",

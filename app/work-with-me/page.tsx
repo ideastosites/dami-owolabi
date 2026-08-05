@@ -29,7 +29,7 @@ export default function WorkWithMePage() {
                             01 / Advisory
                         </span>
                         <div className="relative w-full aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden border border-[#E3E7E7]">
-                            <Image src="/Advisory 3.jpg" alt="Strategic Advisory" fill className="object-cover object-left" />
+                            <Image src="/Advisory_Main.png" alt="Strategic Advisory" fill quality={100} sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-left" />
                         </div>
                     </div>
                     <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A]/90 space-y-8 font-sans leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
@@ -64,7 +64,7 @@ export default function WorkWithMePage() {
                             02 / Speaking
                         </span>
                         <div className="relative w-full aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden border border-[#E3E7E7]">
-                            <Image src="/speaking.jpg" alt="Speaking and Keynotes" fill className="object-cover" />
+                            <Image src="/Speaking 1.png" alt="Speaking and Keynotes" fill quality={100} sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                         </div>
                     </div>
                     <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A]/90 space-y-8 font-sans leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
@@ -97,7 +97,7 @@ export default function WorkWithMePage() {
                             03 / Training
                         </span>
                         <div className="relative w-full aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden border border-[#E3E7E7]">
-                            <Image src="/training.jpg" alt="Corporate Training" fill className="object-cover" />
+                            <Image src="/Training.png" alt="Corporate Training" fill quality={100} sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                         </div>
                     </div>
                     <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A]/90 space-y-8 font-sans leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">

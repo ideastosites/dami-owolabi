@@ -1,9 +1,27 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Image from "next/image";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 export default function TheBrandforgeNetworkPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>("");
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSubmitted(false), 300);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   const benefits = [
     {
       text: "Marketing and growth discussions",
@@ -87,13 +105,13 @@ export default function TheBrandforgeNetworkPage() {
 
               <Reveal delay={0.2}>
                 <div className="pt-2">
-                  <a
-                    href="#apply-network"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
                     className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                   >
                     <span className="relative z-10">Apply to Join</span>
                     <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-                  </a>
+                  </button>
                 </div>
               </Reveal>
             </div>
@@ -179,6 +197,86 @@ export default function TheBrandforgeNetworkPage() {
 
         </div>
       </section>
+
+      {/* Waitlist Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+          <div className="absolute inset-0 bg-[#02232A]/80 backdrop-blur-sm transition-opacity" onClick={closeModal} />
+          
+          <div className="relative bg-white w-full max-w-xl flex flex-col shadow-2xl border border-[#E3E7E7] animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-6 border-b border-[#E3E7E7] bg-[#F7F8F8]">
+              <div>
+                <span className="font-roc font-semibold text-xs uppercase tracking-widest text-[#439aa9] block mb-1">
+                  BrandForge Network
+                </span>
+                <h3 className="font-sans font-bold text-xl sm:text-2xl text-[#02232A]">
+                  Join the Waitlist
+                </h3>
+              </div>
+              <button 
+                onClick={closeModal}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-[#E3E7E7] hover:bg-[#F7F8F8] transition-colors group"
+                aria-label="Close"
+              >
+                <svg className="w-5 h-5 text-[#6B7573] group-hover:text-[#02232A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="p-6 sm:p-8">
+              {submitted ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-[#439aa9]/20 flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-[#054753]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="font-sans font-bold text-2xl text-[#02232A]">Added to Waitlist</h3>
+                  <p className="font-sans text-base text-[#6B7573] max-w-sm mx-auto">
+                    Thank you! We'll be in touch as soon as a spot opens up.
+                  </p>
+                  <button 
+                    onClick={closeModal}
+                    className="mt-6 inline-block font-roc font-bold text-xs uppercase tracking-widest text-[#054753] hover:text-[#439aa9] underline"
+                  >
+                    Close Window
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">Full name</label>
+                    <input type="text" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">Email address</label>
+                    <input type="email" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">WhatsApp number</label>
+                    <PhoneInput
+                      international
+                      defaultCountry="US"
+                      value={phone}
+                      onChange={setPhone}
+                      placeholder="Enter your WhatsApp number"
+                      className="w-full flex gap-3 sm:gap-4
+                        [&_.PhoneInputCountry]:bg-transparent [&_.PhoneInputCountry]:border-b [&_.PhoneInputCountry]:border-[#E3E7E7] [&_.PhoneInputCountry]:px-0 [&_.PhoneInputCountry]:py-2.5 [&_.PhoneInputCountry]:flex [&_.PhoneInputCountry]:items-center [&_.PhoneInputCountry]:transition-colors
+                        [&_.PhoneInputInput]:flex-1 [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:border-b [&_.PhoneInputInput]:border-[#E3E7E7] [&_.PhoneInputInput]:px-0 [&_.PhoneInputInput]:py-2.5 [&_.PhoneInputInput]:focus:outline-none [&_.PhoneInputInput]:focus:border-[#054753] [&_.PhoneInputInput]:transition-colors [&_.PhoneInputInput]:rounded-none [&_.PhoneInputInput]:text-[#0A0A0A] [&_.PhoneInputInput]:placeholder:text-[#6B7573]/50 [&_.PhoneInputInput]:font-sans [&_.PhoneInputInput]:text-base"
+                    />
+                  </div>
+                  <div className="pt-6">
+                    <button type="submit" className="w-full py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase hover:bg-[#054753] transition-colors rounded-full">
+                      Join Waitlist
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

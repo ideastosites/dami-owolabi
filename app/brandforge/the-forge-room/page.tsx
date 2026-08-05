@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 export default function TheForgeRoomPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +71,7 @@ export default function TheForgeRoomPage() {
                     href="#application-form"
                     className="group relative inline-flex items-center justify-center px-6 py-4 bg-[#054753] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                   >
-                    <span className="relative z-10">Apply Now</span>
+                    <span className="relative z-10">Join Waitlist</span>
                     <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                   </a>
                 </div>
@@ -225,7 +228,7 @@ export default function TheForgeRoomPage() {
                     Investment
                   </p>
                   <p className="font-sans font-bold text-2xl text-[#054753]">
-                    ₦50,000
+                    ₦100,000
                   </p>
                 </div>
               </div>
@@ -240,10 +243,10 @@ export default function TheForgeRoomPage() {
                 <div className="py-12 text-center space-y-4">
                   <div className="w-px h-10 bg-[#439aa9] mx-auto" />
                   <h3 className="font-sans font-bold text-2xl text-[#02232A]">
-                    Application Received
+                    Registration Received
                   </h3>
                   <p className="font-sans text-base text-[#6B7573] max-w-md mx-auto">
-                    Thank you for applying. We will review your application and be in touch regarding payment details.
+                    Thank you for joining the waitlist. We will be in touch with updates on the next cohort.
                   </p>
                 </div>
               ) : (
@@ -282,12 +285,15 @@ export default function TheForgeRoomPage() {
                     <label htmlFor="whatsapp" className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">
                       WhatsApp number
                     </label>
-                    <input
-                      type="tel"
-                      id="whatsapp"
-                      required
-                      placeholder="+234..."
-                      className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none"
+                    <PhoneInput
+                      international
+                      defaultCountry="US"
+                      value={phone}
+                      onChange={setPhone}
+                      placeholder="Enter your WhatsApp number"
+                      className="w-full flex gap-3 sm:gap-4
+                        [&_.PhoneInputCountry]:bg-transparent [&_.PhoneInputCountry]:border-b [&_.PhoneInputCountry]:border-[#E3E7E7] [&_.PhoneInputCountry]:px-0 [&_.PhoneInputCountry]:py-2.5 [&_.PhoneInputCountry]:flex [&_.PhoneInputCountry]:items-center [&_.PhoneInputCountry]:transition-colors
+                        [&_.PhoneInputInput]:flex-1 [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:border-b [&_.PhoneInputInput]:border-[#E3E7E7] [&_.PhoneInputInput]:px-0 [&_.PhoneInputInput]:py-2.5 [&_.PhoneInputInput]:focus:outline-none [&_.PhoneInputInput]:focus:border-[#054753] [&_.PhoneInputInput]:transition-colors [&_.PhoneInputInput]:rounded-none [&_.PhoneInputInput]:text-[#0A0A0A] [&_.PhoneInputInput]:placeholder:text-[#6B7573]/50 [&_.PhoneInputInput]:font-sans [&_.PhoneInputInput]:text-base"
                     />
                   </div>
 
@@ -324,12 +330,9 @@ export default function TheForgeRoomPage() {
                       type="submit"
                       className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                     >
-                      <span className="relative z-10">Submit Application</span>
+                      <span className="relative z-10">Join Waitlist</span>
                       <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                     </button>
-                    <p className="text-center font-sans text-[11px] text-[#6B7573] mt-4">
-                      Payment details will be provided upon application review.
-                    </p>
                   </div>
                   
                 </form>

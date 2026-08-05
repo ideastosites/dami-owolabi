@@ -4,16 +4,21 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
-// Full data object for all courses based on the document
+// To turn a course on/off, change the `status` field.
+// status: "Active" will display "Available Now" and "Book This Course".
+// status: "Upcoming" will display "Date To Be Fixed" and "Join Waitlist".
 const courses = [
   {
     id: "interview-prep",
     image: "/interview_prep.jpg",
     title: "Interview Prep Sprint",
     duration: "2 Sessions",
-    desc: "A focused 2 session course for marketing professionals with an upcoming interview who need clearer answers, stronger positioning and practical preparation before the conversation.",
+    desc: "A focused 2-session course for marketing professionals to prepare properly for upcoming interviews.",
     format: "Online (60m/session)",
+    status: "Active",
     price: "₦50,000",
     fullDetails: {
       intro: "Prepare better. Speak clearer. Show up with confidence.\n\nThe Interview Prep Sprint is a focused 2-session course for marketing professionals who have an upcoming interview and want to prepare properly. It is designed for people applying for roles in marketing, brand, growth, digital marketing, communications or related fields.\n\nThis is not a generic interview coaching session. It is built specifically around marketing interviews, where you need to show how you think, how you solve problems, how you understand the customer, how you connect marketing to business goals and how you communicate your value clearly.",
@@ -60,6 +65,7 @@ const courses = [
     duration: "90 Minutes",
     desc: "Get clear, practical guidance on your career, brand, business or marketing challenge.",
     format: "Private 1:1 Online",
+    status: "Active",
     price: "₦100,000",
     fullDetails: {
       intro: "Get clarity on your next move.\n\nThe 1:1 Strategy Session is a 90 minutes personalised session for marketers, founders, career professionals and growth-minded individuals who need clearer direction.\n\nThis is not a generic coaching call. It is a focused conversation built around your current stage, your goals and the specific clarity you need. The session can focus on your career, personal brand, marketing challenge, business idea, or how to position yourself for better opportunities.",
@@ -105,8 +111,9 @@ const courses = [
     image: "/Switching Into Marketing.jpg",
     title: "Switching Into Marketing",
     duration: "2 Days",
-    desc: "A practical course for career switchers who want to move into marketing, digital marketing or brand management with clarity, confidence and the right positioning.",
+    desc: "A practical course for career switchers moving into marketing with clarity and confidence.",
     format: "In Person",
+    status: "Upcoming",
     price: "₦250,000",
     fullDetails: {
       intro: "A practical course for people who want to start a career in marketing, digital or brand management.\n\nBreaking into marketing can feel confusing when you are coming from another background. You may know you are interested in marketing, but you are not sure where to start, what skills matter, how to position your previous experience or what kind of roles to apply for.\n\nThis course is designed to help you make that transition with more clarity. It will help you understand how marketing works, the different career paths available, the skills you need to build and how to present yourself as someone who can bring value, even without a traditional marketing background.",
@@ -151,8 +158,9 @@ const courses = [
     image: "/Commercial Marketing & Growth.jpg",
     title: "Commercial Marketing & Growth",
     duration: "2 Days",
-    desc: "A practical course for marketers, founders and business professionals who want to understand how marketing connects to revenue, customer growth, retention and business performance.",
+    desc: "A practical course on how marketing connects to revenue, growth, and business performance.",
     format: "In Person",
+    status: "Upcoming",
     price: "₦350,000",
     fullDetails: {
       intro: "Build brands. Drive revenue. Lead growth.\n\nMarketing is no longer just about campaigns, content or visibility. Today's marketers are expected to understand customers, influence growth, support acquisition, improve retention, justify marketing investment and contribute to business decisions.\n\nThe Commercial Marketing & Growth Course is designed for marketers, founders, business owners and commercial professionals who want to move beyond traditional marketing and understand how modern businesses grow. This is not another basic marketing course. It is a practical course on how marketing connects to growth, revenue and commercial impact.",
@@ -196,6 +204,7 @@ export default function BrandforgeAcademyPage() {
   const [selectedCourse, setSelectedCourse] = useState<typeof courses[0] | null>(null);
   const [isBookingMode, setIsBookingMode] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>("");
 
   const openModal = (course: typeof courses[0]) => {
     setSelectedCourse(course);
@@ -317,6 +326,15 @@ export default function BrandforgeAcademyPage() {
                 >
                 <div className="w-full aspect-[4/3] bg-[#F7F8F8] relative overflow-hidden border-b border-[#E3E7E7]">
                   <Image src={course.image} alt={course.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className={`font-roc font-bold text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full ${
+                      course.status === 'Active' 
+                        ? 'bg-[#02232A] text-white shadow-md' 
+                        : 'bg-white text-[#0A0A0A] border border-[#E3E7E7] shadow-sm'
+                    }`}>
+                      {course.status === 'Active' ? 'Available Now' : 'Date To Be Fixed'}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="flex flex-col flex-grow p-6 sm:p-8 space-y-6">
@@ -327,7 +345,7 @@ export default function BrandforgeAcademyPage() {
                     <h3 className="font-sans font-bold text-2xl text-[#02232A] leading-tight group-hover:text-[#054753] transition-colors">
                       {course.title}
                     </h3>
-                    <p className="font-sans text-sm text-[#6B7573] leading-relaxed line-clamp-4">
+                    <p className="font-sans text-sm text-[#6B7573] leading-[1.6]">
                       {course.desc}
                     </p>
                   </div>
@@ -342,7 +360,7 @@ export default function BrandforgeAcademyPage() {
                           {course.price}
                         </p>
                       </div>
-                      <span className="font-sans font-medium text-xs text-[#0A0A0A] bg-[#F7F8F8] px-2 py-1 rounded">
+                      <span className="font-sans font-medium text-[10px] text-[#0A0A0A] bg-[#F7F8F8] px-2 py-1 rounded border border-[#E3E7E7]/50">
                         {course.format}
                       </span>
                     </div>
@@ -368,7 +386,7 @@ export default function BrandforgeAcademyPage() {
           COURSE DETAILS MODAL (Pop-up)
       ========================================================= */}
       {selectedCourse && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
           
           {/* Backdrop */}
           <div 
@@ -407,7 +425,9 @@ export default function BrandforgeAcademyPage() {
                 // BOOKING FORM VIEW
                 <div className="max-w-2xl mx-auto py-4 animate-in slide-in-from-right-4 duration-300">
                   <div className="mb-8 text-center">
-                    <h4 className="font-sans font-bold text-3xl text-[#02232A] mb-2">Register Your Interest</h4>
+                    <h4 className="font-sans font-bold text-3xl text-[#02232A] mb-2">
+                      {selectedCourse.status === 'Active' ? 'Register Your Interest' : 'Join the Waitlist'}
+                    </h4>
                     <p className="font-sans text-[#6B7573]">Fill out the form below to secure your spot for <strong>{selectedCourse.title}</strong>.</p>
                   </div>
                   
@@ -441,7 +461,16 @@ export default function BrandforgeAcademyPage() {
                       </div>
                       <div className="space-y-2">
                         <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">WhatsApp number</label>
-                        <input type="tel" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
+                        <PhoneInput
+                          international
+                          defaultCountry="US"
+                          value={phone}
+                          onChange={setPhone}
+                          placeholder="Enter your WhatsApp number"
+                          className="w-full flex gap-3 sm:gap-4
+                            [&_.PhoneInputCountry]:bg-transparent [&_.PhoneInputCountry]:border-b [&_.PhoneInputCountry]:border-[#E3E7E7] [&_.PhoneInputCountry]:px-0 [&_.PhoneInputCountry]:py-2.5 [&_.PhoneInputCountry]:flex [&_.PhoneInputCountry]:items-center [&_.PhoneInputCountry]:transition-colors
+                            [&_.PhoneInputInput]:flex-1 [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:border-b [&_.PhoneInputInput]:border-[#E3E7E7] [&_.PhoneInputInput]:px-0 [&_.PhoneInputInput]:py-2.5 [&_.PhoneInputInput]:focus:outline-none [&_.PhoneInputInput]:focus:border-[#054753] [&_.PhoneInputInput]:transition-colors [&_.PhoneInputInput]:rounded-none [&_.PhoneInputInput]:text-[#0A0A0A] [&_.PhoneInputInput]:placeholder:text-[#6B7573]/50 [&_.PhoneInputInput]:font-sans [&_.PhoneInputInput]:text-base"
+                        />
                       </div>
                       <div className="space-y-2">
                         <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">Where are you currently based?</label>
@@ -477,9 +506,9 @@ export default function BrandforgeAcademyPage() {
                     </span>
                   </div>
 
-                  <div className="prose prose-lg prose-slate max-w-none font-sans">
+                  <div className="font-sans max-w-none">
                     {selectedCourse.fullDetails.intro.split('\n\n').map((paragraph, i) => (
-                      <p key={i} className="text-[#0A0A0A]/90 leading-relaxed font-medium">
+                      <p key={i} className="text-[#0A0A0A]/90 leading-[2.2] font-medium mb-6 last:mb-0">
                         {paragraph}
                       </p>
                     ))}
@@ -522,7 +551,9 @@ export default function BrandforgeAcademyPage() {
                   onClick={handleBookClick}
                   className="group relative flex items-center justify-center px-8 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full"
                 >
-                  <span className="relative z-10">Book This Course</span>
+                  <span className="relative z-10">
+                    {selectedCourse.status === 'Active' ? 'Book This Course' : 'Join Waitlist'}
+                  </span>
                   <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                 </button>
               </div>

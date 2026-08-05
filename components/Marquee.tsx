@@ -32,7 +32,7 @@ export default function Marquee({ items = DEFAULT_ITEMS }: { items?: string[] })
           <span
             key={`${item}-${index}`}
             className="flex items-center gap-10 font-sans text-2xl font-bold uppercase tracking-[-0.01em] text-transparent sm:text-3xl"
-            style={{ WebkitTextStroke: "1px #E3E7E7" }}
+            style={{ WebkitTextStroke: "1px #B0B8B8" }}
           >
             {item}
             <span className="text-[#439aa9]" style={{ WebkitTextStroke: "0" }}>
