@@ -9,7 +9,7 @@ import "react-phone-number-input/style.css";
 
 // To turn a course on/off, change the `status` field.
 // status: "Active" will display "Available Now" and "Book This Course".
-// status: "Upcoming" will display "Date To Be Fixed" and "Join Waitlist".
+// status: "Upcoming" will display "Upcoming" and "Join Waitlist".
 const courses = [
   {
     id: "interview-prep",
@@ -332,7 +332,7 @@ export default function BrandforgeAcademyPage() {
                         ? 'bg-[#02232A] text-white shadow-md' 
                         : 'bg-white text-[#0A0A0A] border border-[#E3E7E7] shadow-sm'
                     }`}>
-                      {course.status === 'Active' ? 'Available Now' : 'Date To Be Fixed'}
+                      {course.status === 'Active' ? 'Available Now' : 'Upcoming'}
                     </span>
                   </div>
                 </div>
