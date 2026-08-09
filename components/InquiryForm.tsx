@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Honeypot from "@/components/Honeypot";
 
 type InquiryFormData = {
   name: string;
@@ -11,12 +12,11 @@ type InquiryFormData = {
 };
 
 type InquiryFormProps = {
-  formName: string;
   defaultType?: string;
   onClose?: () => void;
 };
 
-export default function InquiryForm({ formName, defaultType = "Advisory", onClose }: InquiryFormProps) {
+export default function InquiryForm({ defaultType = "Advisory", onClose }: InquiryFormProps) {
   const {
     register,
     handleSubmit,
@@ -30,18 +30,45 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
   });
 
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const selectedType = watch("engagementType");
 
-  const onSubmit = async (data: InquiryFormData) => {
-    // Simulated API call per design system constraints
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(`[${formName}] Submitted:`, data);
-    setIsSuccess(true);
-    reset();
-    setTimeout(() => {
-      setIsSuccess(false);
-      if (onClose) onClose();
-    }, 2000);
+  const onSubmit = async (data: InquiryFormData, e?: React.BaseSyntheticEvent) => {
+    setSubmitError(null);
+    try {
+      const formEl = e?.target as HTMLFormElement | undefined;
+      const formData = formEl ? new FormData(formEl) : null;
+      const website = formData?.get("website")?.toString();
+      const formRenderedAt = formData?.get("formRenderedAt")?.toString();
+
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: data.engagementType,
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          website,
+          formRenderedAt,
+        }),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        setSubmitError(body.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setIsSuccess(true);
+      reset();
+      setTimeout(() => {
+        setIsSuccess(false);
+        if (onClose) onClose();
+      }, 2000);
+    } catch {
+      setSubmitError("Could not reach the server. Please try again.");
+    }
   };
 
   return (
@@ -88,7 +115,8 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
-            
+            <Honeypot />
+
             <div>
               <label htmlFor="name" className="text-[11px] font-roc font-semibold uppercase tracking-[0.15em] text-[#054753] block mb-4">
                 Full Name
@@ -174,6 +202,11 @@ export default function InquiryForm({ formName, defaultType = "Advisory", onClos
             {isSuccess && (
               <p className="text-[#439aa9] text-sm font-medium font-sans mt-4">
                 Thank you! Your message has been received.
+              </p>
+            )}
+            {submitError && (
+              <p className="text-[#B8433A] text-sm font-medium font-sans mt-4">
+                {submitError}
               </p>
             )}
           </form>

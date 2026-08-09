@@ -29,10 +29,9 @@ export default function InquiryModalTrigger({ buttonText, defaultType = "Advisor
           onClick={() => setIsOpen(false)}
         >
           {/* InquiryForm prevents click propagation to the backdrop */}
-          <InquiryForm 
-            formName="Start a Conversation" 
-            defaultType={defaultType} 
-            onClose={() => setIsOpen(false)} 
+          <InquiryForm
+            defaultType={defaultType}
+            onClose={() => setIsOpen(false)}
           />
         </div>
       )}

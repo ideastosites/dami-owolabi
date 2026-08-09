@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Link from "next/link";
 import { FaLinkedin, FaInstagram, FaTwitter } from "react-icons/fa";
@@ -7,6 +8,7 @@ import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Loader2 } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import Honeypot from "@/components/Honeypot";
 
 type ContactFormInputs = {
     fullName: string;
@@ -26,12 +28,45 @@ export default function ContactPage() {
         reset,
     } = useForm<ContactFormInputs>();
 
-    const onSubmit = async (data: ContactFormInputs) => {
-        // Placeholder endpoint for now
-        console.log("Form Submitted:", data);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        reset();
-        alert("Message sent successfully!");
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
+
+    const onSubmit = async (data: ContactFormInputs, e?: React.BaseSyntheticEvent) => {
+        setSubmitError(null);
+        try {
+            const formEl = e?.target as HTMLFormElement | undefined;
+            const formData = formEl ? new FormData(formEl) : null;
+            const website = formData?.get("website")?.toString();
+            const formRenderedAt = formData?.get("formRenderedAt")?.toString();
+
+            const res = await fetch("/api/leads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    source: "Contact Page",
+                    name: data.fullName,
+                    email: data.email,
+                    phone: data.phone,
+                    message: data.message,
+                    preferredDate: data.preferredDate,
+                    preferredTime: data.preferredTime,
+                    website,
+                    formRenderedAt,
+                }),
+            });
+
+            if (!res.ok) {
+                const body = await res.json().catch(() => ({}));
+                setSubmitError(body.error || "Something went wrong. Please try again.");
+                return;
+            }
+
+            reset();
+            setIsSuccess(true);
+            setTimeout(() => setIsSuccess(false), 4000);
+        } catch {
+            setSubmitError("Could not reach the server. Please try again.");
+        }
     };
 
     // Get today's date in YYYY-MM-DD format for the min attribute
@@ -48,7 +83,7 @@ export default function ContactPage() {
                             Let’s build something worthwhile
                         </h1>
                         <p className="font-sans text-lg sm:text-xl leading-[1.6] text-[#0A0A0A]/80 max-w-[45ch] lg:max-w-[60ch]">
-                            Whether you're looking for strategic support, a speaker, career coaching or <span className="italic font-normal text-[#439aa9] whitespace-nowrap">The Forge Room</span>, I'd love to hear from you.
+                            Whether you’re looking for strategic support, a speaker, career coaching or <span className="italic font-normal text-[#439aa9] whitespace-nowrap">The Forge Room</span>, I’d love to hear from you.
                         </p>
                     </Reveal>
 
@@ -106,6 +141,7 @@ export default function ContactPage() {
                 <Reveal delay={0.2} className="lg:col-span-7">
                     <div className="bg-[#F7F8F8] p-8 md:p-12 border border-[#E3E7E7] rounded-none">
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 flex flex-col">
+                            <Honeypot />
 
                             <div className="space-y-2">
                                 <label htmlFor="fullName" className="font-roc font-semibold text-xs uppercase tracking-[0.2em] text-[#6B7573]">
@@ -243,6 +279,16 @@ export default function ContactPage() {
                                         )}
                                     </div>
                                 </button>
+                                {isSuccess && (
+                                    <p className="font-sans text-sm font-medium text-[#439aa9] mt-4">
+                                        Thank you! Your message has been received — I&apos;ll get back to you shortly.
+                                    </p>
+                                )}
+                                {submitError && (
+                                    <p className="font-sans text-sm font-medium text-[#B8433A] mt-4">
+                                        {submitError}
+                                    </p>
+                                )}
                             </div>
                         </form>
                     </div>
