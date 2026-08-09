@@ -1,28 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
 import { confirmPayment } from "@/lib/payments/confirmPayment";
+import { checkRateLimit } from "@/lib/security/rateLimit";
+import { getClientIp } from "@/lib/security/clientIp";
 
 const DEFAULT_ALLOWED_IP = "18.233.137.110";
 
-function extractClientIp(request: NextRequest): string | null {
-  // Novac's only integrity control is source-IP allowlisting (no signature
-  // header). x-forwarded-for is set by whatever reverse proxy sits in front
-  // of the app (cPanel/Passenger, Vercel, etc.) — take the first hop, which
-  // is the original client as seen by the proxy chain closest to the internet.
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (forwardedFor) return forwardedFor.split(",")[0].trim();
-  return request.headers.get("x-real-ip");
-}
+// Generous — Novac itself retries 3x at 5s intervals on a non-200, so this
+// exists purely to cap abuse if the IP check below is ever defeated, not to
+// throttle legitimate traffic.
+const WEBHOOK_LIMIT = 30;
+const WEBHOOK_WINDOW_MS = 60 * 1000;
 
 export async function POST(request: NextRequest) {
+  const ip = getClientIp(request);
+
+  const rate = checkRateLimit(`webhook:${ip}`, WEBHOOK_LIMIT, WEBHOOK_WINDOW_MS);
+  if (!rate.allowed) {
+    console.warn(`[webhooks/novac] rate limited: ${ip}`);
+    return NextResponse.json(
+      { error: "Too many requests" },
+      { status: 429, headers: { "Retry-After": String(rate.retryAfterSeconds) } }
+    );
+  }
+
   const allowedIp = process.env.NOVAC_WEBHOOK_ALLOWED_IP || DEFAULT_ALLOWED_IP;
   const bypassIpCheck = process.env.NOVAC_WEBHOOK_ALLOW_ANY_IP === "true";
 
-  if (!bypassIpCheck) {
-    const clientIp = extractClientIp(request);
-    if (clientIp !== allowedIp) {
-      console.warn(`[webhooks/novac] rejected webhook from untrusted IP: ${clientIp}`);
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
+  if (!bypassIpCheck && ip !== allowedIp) {
+    console.warn(`[webhooks/novac] rejected webhook from untrusted IP: ${ip}`);
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   let payload: { data?: { transactionReference?: string }; notify?: string; notifyType?: string };

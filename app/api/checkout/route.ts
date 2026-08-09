@@ -3,18 +3,44 @@ import { randomUUID } from "crypto";
 import { getProduct } from "@/lib/payments/products";
 import { createPayment } from "@/lib/payments/store";
 import { initiateCheckout } from "@/lib/payments/novac";
+import { checkRateLimit } from "@/lib/security/rateLimit";
+import { getClientIp } from "@/lib/security/clientIp";
+import { isReasonableLength, isValidEmail, MAX_NAME_LENGTH, MAX_PHONE_LENGTH } from "@/lib/security/validate";
+import { looksLikeBot } from "@/lib/security/antiSpam";
+
+const CHECKOUT_LIMIT = 10;
+const CHECKOUT_WINDOW_MS = 10 * 60 * 1000;
 
 export async function POST(request: NextRequest) {
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(`checkout:${ip}`, CHECKOUT_LIMIT, CHECKOUT_WINDOW_MS);
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again shortly." },
+      { status: 429, headers: { "Retry-After": String(rate.retryAfterSeconds) } }
+    );
+  }
+
   let body: {
     productId?: string;
     name?: string;
     email?: string;
     phone?: string;
+    website?: string;
+    formRenderedAt?: number;
   };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  // Unlike the waitlist/leads endpoints, there's no harmless fake success to
+  // hand a bot here (it would need a real Novac redirect URL), so this just
+  // rejects outright rather than faking one.
+  if (looksLikeBot({ honeypot: body.website, formRenderedAt: body.formRenderedAt })) {
+    console.warn("[api/checkout] likely bot submission rejected");
+    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 400 });
   }
 
   const { productId, name, email, phone } = body;
@@ -24,6 +50,16 @@ export async function POST(request: NextRequest) {
       { error: "productId, name and email are required" },
       { status: 400 }
     );
+  }
+
+  if (!isReasonableLength(name, MAX_NAME_LENGTH)) {
+    return NextResponse.json({ error: "Name is too long" }, { status: 400 });
+  }
+  if (!isValidEmail(email)) {
+    return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 });
+  }
+  if (phone && !isReasonableLength(phone, MAX_PHONE_LENGTH)) {
+    return NextResponse.json({ error: "Phone number is too long" }, { status: 400 });
   }
 
   const product = getProduct(productId);

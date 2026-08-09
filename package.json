@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "country-flag-icons": "^1.6.20",
+    "exceljs": "^4.4.0",
     "libphonenumber-js": "^1.13.9",
     "lucide-react": "^1.27.0",
     "motion": "^12.42.2",
-    "next": "16.2.10",
+    "next": "^16.3.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.83.0",
@@ -27,8 +28,14 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.10",
+    "eslint-config-next": "^16.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
