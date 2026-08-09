@@ -58,6 +58,10 @@ export function findPayment(transactionReference: string): Promise<PaymentRecord
   });
 }
 
+export function getAllPayments(): Promise<PaymentRecord[]> {
+  return enqueue(() => readAllUnsafe());
+}
+
 export function createPayment(record: PaymentRecord): Promise<PaymentRecord> {
   return enqueue(async () => {
     const records = await readAllUnsafe();
