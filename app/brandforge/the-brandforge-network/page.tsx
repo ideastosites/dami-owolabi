@@ -6,6 +6,14 @@ import Reveal from "@/components/Reveal";
 import Image from "next/image";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import StructuredData from "@/components/StructuredData";
+import { breadcrumbSchema } from "@/lib/seo";
+
+const breadcrumbs = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "BrandForge", path: "/brandforge" },
+  { name: "The BrandForge Network", path: "/brandforge/the-brandforge-network" },
+]);
 
 export default function TheBrandforgeNetworkPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +67,8 @@ export default function TheBrandforgeNetworkPage() {
 
   return (
     <div className="w-full text-[#0A0A0A] font-sans min-h-screen">
-      
+      <StructuredData data={breadcrumbs} />
+
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW 
       ========================================================= */}
@@ -234,7 +243,7 @@ export default function TheBrandforgeNetworkPage() {
                   </div>
                   <h3 className="font-sans font-bold text-2xl text-[#02232A]">Added to Waitlist</h3>
                   <p className="font-sans text-base text-[#6B7573] max-w-sm mx-auto">
-                    Thank you! We'll be in touch as soon as a spot opens up.
+                    Thank you! We’ll be in touch as soon as a spot opens up.
                   </p>
                   <button 
                     onClick={closeModal}

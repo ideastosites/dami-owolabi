@@ -6,6 +6,39 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import Honeypot from "@/components/Honeypot";
+import StructuredData from "@/components/StructuredData";
+import { breadcrumbSchema } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
+import { getProduct } from "@/lib/payments/products";
+
+const breadcrumbs = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "BrandForge", path: "/brandforge" },
+  { name: "BrandForge Roundtable", path: "/brandforge/roundtable" },
+]);
+
+const roundtableProduct = getProduct("roundtable");
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "In-person marketing roundtable",
+  name: "BrandForge Roundtable",
+  description:
+    "An in-person experience for marketers, founders and growth professionals to discuss brand, career and commercial marketing beyond surface-level advice.",
+  provider: { "@type": "Person", name: "Dami Owolabi", sameAs: siteUrl() },
+  url: `${siteUrl()}/brandforge/roundtable`,
+  ...(roundtableProduct && {
+    offers: {
+      "@type": "Offer",
+      price: roundtableProduct.amount,
+      priceCurrency: roundtableProduct.currency,
+      availability: "https://schema.org/InStock",
+      url: `${siteUrl()}/brandforge/roundtable`,
+    },
+  }),
+};
 
 export default function BrandforgeRoundtablePage() {
   const [phone, setPhone] = useState<string | undefined>("");
@@ -28,6 +61,8 @@ export default function BrandforgeRoundtablePage() {
           name: formData.get("fullName"),
           email: formData.get("email"),
           phone,
+          website: formData.get("website"),
+          formRenderedAt: formData.get("formRenderedAt"),
         }),
       });
       const body = await res.json();
@@ -47,7 +82,9 @@ export default function BrandforgeRoundtablePage() {
 
   return (
     <div className="w-full text-[#0A0A0A] font-sans min-h-screen">
-      
+      <StructuredData data={breadcrumbs} />
+      <StructuredData data={serviceSchema} />
+
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW 
       ========================================================= */}
@@ -233,6 +270,7 @@ export default function BrandforgeRoundtablePage() {
                 <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#02232A]" />
                 
                 <form className="space-y-6" onSubmit={handleSubmit}>
+                    <Honeypot />
 
                     <div className="space-y-2">
                       <label htmlFor="fullName" className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">

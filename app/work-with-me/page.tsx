@@ -3,11 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import InquiryModalTrigger from "@/components/InquiryModalTrigger";
 import Reveal from "@/components/Reveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-    title: "Work With Me | Dami Owolabi",
-    description: "Strategic Advisory & Executive Collaboration.",
-};
+export const metadata = pageMetadata({
+    title: "Work With Me | Strategic Advisory, Speaking & Corporate Training — Dami Owolabi",
+    description:
+        "Book strategic advisory, speaking engagements, or corporate training with Dami Owolabi — practical marketing and growth expertise for businesses, teams and leaders.",
+    path: "/work-with-me",
+});
 
 export default function WorkWithMePage() {
     return (

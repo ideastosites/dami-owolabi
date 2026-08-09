@@ -2,6 +2,27 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import StructuredData from "@/components/StructuredData";
+import { pageMetadata } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
+
+export const metadata = pageMetadata({
+  title: "BrandForge | Marketing & Career Development Ecosystem — Dami Owolabi",
+  description:
+    "BrandForge is Dami Owolabi's ecosystem for marketers — The Forge Room, BrandForge Academy, Roundtable, and a growing professional network, built to help marketers become hard to ignore.",
+  path: "/brandforge",
+});
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "BrandForge",
+  url: `${siteUrl()}/brandforge`,
+  description:
+    "BrandForge is Dami Owolabi's ecosystem for marketers — courses, an in-person roundtable, a 12-week career experience, and a professional network.",
+  founder: { "@type": "Person", name: "Dami Owolabi" },
+  sameAs: ["https://www.instagram.com/brandforgeofficial/"],
+};
 
 export default function BrandforgeOverviewPage() {
   const directoryLinks = [
@@ -33,6 +54,7 @@ export default function BrandforgeOverviewPage() {
 
   return (
     <div className="w-full text-[#0A0A0A] font-sans min-h-screen">
+      <StructuredData data={organizationSchema} />
       {/* =========================================================
           SECTION 01: HERO MANIFESTO (What is BrandForge)
       ========================================================= */}

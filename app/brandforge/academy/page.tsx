@@ -6,6 +6,10 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import Honeypot from "@/components/Honeypot";
+import StructuredData from "@/components/StructuredData";
+import { siteUrl } from "@/lib/site";
+import { breadcrumbSchema } from "@/lib/seo";
 
 // To turn a course on/off, change the `status` field.
 // status: "Active" will display "Available Now" and "Book This Course".
@@ -200,6 +204,32 @@ const courses = [
   }
 ];
 
+const courseSchemas = courses.map((course) => ({
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: course.title,
+  description: course.desc,
+  provider: {
+    "@type": "Person",
+    name: "Dami Owolabi",
+    sameAs: siteUrl(),
+  },
+  offers: {
+    "@type": "Offer",
+    price: Number(course.price.replace(/[^0-9]/g, "")),
+    priceCurrency: "NGN",
+    availability:
+      course.status === "Active" ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+    url: `${siteUrl()}/brandforge/academy`,
+  },
+}));
+
+const breadcrumbs = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "BrandForge", path: "/brandforge" },
+  { name: "BrandForge Academy", path: "/brandforge/academy" },
+]);
+
 export default function BrandforgeAcademyPage() {
   const [selectedCourse, setSelectedCourse] = useState<typeof courses[0] | null>(null);
   const [isBookingMode, setIsBookingMode] = useState(false);
@@ -232,16 +262,44 @@ export default function BrandforgeAcademyPage() {
     e.preventDefault();
     if (!selectedCourse) return;
 
+    const formData = new FormData(e.currentTarget);
+
     // Courses that aren't open yet just collect a waitlist lead — nothing to charge.
     if (selectedCourse.status !== "Active") {
-      setSubmitted(true);
+      setCheckoutError(null);
+      setIsProcessing(true);
+      try {
+        const res = await fetch("/api/waitlist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            courseId: selectedCourse.id,
+            courseTitle: selectedCourse.title,
+            name: formData.get("fullName"),
+            email: formData.get("email"),
+            phone,
+            location: formData.get("location"),
+            website: formData.get("website"),
+            formRenderedAt: formData.get("formRenderedAt"),
+          }),
+        });
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          setCheckoutError(body.error || "Something went wrong. Please try again.");
+          setIsProcessing(false);
+          return;
+        }
+        setIsProcessing(false);
+        setSubmitted(true);
+      } catch {
+        setCheckoutError("Could not reach the server. Please try again.");
+        setIsProcessing(false);
+      }
       return;
     }
 
     setCheckoutError(null);
     setIsProcessing(true);
-
-    const formData = new FormData(e.currentTarget);
 
     try {
       const res = await fetch("/api/checkout", {
@@ -252,6 +310,8 @@ export default function BrandforgeAcademyPage() {
           name: formData.get("fullName"),
           email: formData.get("email"),
           phone,
+          website: formData.get("website"),
+          formRenderedAt: formData.get("formRenderedAt"),
         }),
       });
       const body = await res.json();
@@ -271,9 +331,12 @@ export default function BrandforgeAcademyPage() {
 
   return (
     <div className="w-full text-[#0A0A0A] font-sans min-h-screen relative">
-      
+      <StructuredData data={breadcrumbs} />
+      {courseSchemas.map((schema) => (
+        <StructuredData key={schema.name} data={schema} />
+      ))}
       {/* =========================================================
-          SECTION 01: HERO & MANIFESTO 
+          SECTION 01: HERO & MANIFESTO
       ========================================================= */}
       <section className="relative py-12 md:py-16 border-b border-[#E3E7E7] overflow-hidden">
         
@@ -495,6 +558,7 @@ export default function BrandforgeAcademyPage() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      <Honeypot />
                       <div className="space-y-2">
                         <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">Full name</label>
                         <input name="fullName" type="text" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
@@ -530,7 +594,7 @@ export default function BrandforgeAcademyPage() {
                           className="w-full py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase hover:bg-[#054753] transition-colors rounded-full disabled:opacity-50"
                         >
                           {isProcessing
-                            ? "Redirecting to payment..."
+                            ? (selectedCourse.status === 'Active' ? "Redirecting to payment..." : "Submitting...")
                             : selectedCourse.status === 'Active'
                               ? 'Continue to Payment'
                               : 'Submit Application'}

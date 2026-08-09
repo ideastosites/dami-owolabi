@@ -17,7 +17,7 @@ function GradientDivider() {
 
 export default function HomePage() {
     return (
-        <StickyPortraitLayout imageSrc="/dami-owolabi2.png" imageAlt="Dami Owolabi">
+        <StickyPortraitLayout imageSrc="/dami-owolabi2.png" imageAlt="Dami Owolabi — Marketing Leader, Growth Strategist, Brand Builder">
             <section className="px-6 py-12 text-center sm:px-12 sm:py-16 sm:text-left lg:px-16 lg:py-24">
                 <Reveal>
                     <h1 className="font-sans text-6xl font-bold uppercase leading-[0.9] tracking-[-0.03em] text-[#0A0A0A] sm:text-7xl lg:text-8xl">
@@ -55,7 +55,7 @@ export default function HomePage() {
                 >
                     <Image
                         src="/dami-owolabi2.png"
-                        alt="Dami Owolabi"
+                        alt="Dami Owolabi — Marketing Leader, Growth Strategist, Brand Builder"
                         fill
                         quality={90}
                         sizes="100vw"

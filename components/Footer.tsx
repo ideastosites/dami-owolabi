@@ -141,8 +141,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Centered Copyright */}
-        <div className="mt-10 pt-4 border-t border-white/10 text-center w-full font-sans text-xs text-white/60">
+        <div className="mt-10 pt-4 border-t border-white/10 text-center w-full font-sans text-xs text-white/60 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
           <p>© 2026 Dami Owolabi. All rights reserved.</p>
+          <span className="hidden sm:inline">·</span>
+          <Link href="/privacy" className="hover:text-white transition-colors duration-200">
+            Privacy Policy
+          </Link>
+          <span className="hidden sm:inline">·</span>
+          <Link href="/terms" className="hover:text-white transition-colors duration-200">
+            Terms of Service
+          </Link>
         </div>
       </div>
     </footer>

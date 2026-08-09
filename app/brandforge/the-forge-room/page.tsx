@@ -6,6 +6,14 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import StructuredData from "@/components/StructuredData";
+import { breadcrumbSchema } from "@/lib/seo";
+
+const breadcrumbs = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "BrandForge", path: "/brandforge" },
+  { name: "The Forge Room", path: "/brandforge/the-forge-room" },
+]);
 
 export default function TheForgeRoomPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,7 +26,8 @@ export default function TheForgeRoomPage() {
 
   return (
     <div className="w-full text-[#0A0A0A] font-sans">
-      
+      <StructuredData data={breadcrumbs} />
+
       {/* =========================================================
           SECTION 01: HERO & OVERVIEW (Image + Typography Split)
       ========================================================= */}
