@@ -8,12 +8,41 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 export default function BrandforgeRoundtablePage() {
-  const [submitted, setSubmitted] = useState(false);
   const [phone, setPhone] = useState<string | undefined>("");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setCheckoutError(null);
+    setIsProcessing(true);
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: "roundtable",
+          name: formData.get("fullName"),
+          email: formData.get("email"),
+          phone,
+        }),
+      });
+      const body = await res.json();
+
+      if (!res.ok) {
+        setCheckoutError(body.error || "Something went wrong. Please try again.");
+        setIsProcessing(false);
+        return;
+      }
+
+      window.location.href = body.paymentRedirectUrl;
+    } catch {
+      setCheckoutError("Could not reach the payment service. Please try again.");
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -203,31 +232,20 @@ export default function BrandforgeRoundtablePage() {
                 {/* Corner Accents */}
                 <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#02232A]" />
                 
-                {submitted ? (
-                  <div className="py-12 text-center space-y-4">
-                    <div className="w-px h-10 bg-[#439aa9] mx-auto" />
-                    <h3 className="font-sans font-bold text-2xl text-[#02232A]">
-                      Interest Registered
-                    </h3>
-                    <p className="font-sans text-base text-[#6B7573] max-w-md mx-auto">
-                      Thank you for your interest. We will notify you when the next Roundtable in your city is scheduled.
-                    </p>
-                  </div>
-                ) : (
-                  <form className="space-y-6" onSubmit={handleSubmit}>
-                    
+                <form className="space-y-6" onSubmit={handleSubmit}>
+
                     <div className="space-y-2">
                       <label htmlFor="fullName" className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">
                         Full name
                       </label>
-                      <input type="text" id="fullName" required placeholder="Enter your full name" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
+                      <input name="fullName" type="text" id="fullName" required placeholder="Enter your full name" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
                     </div>
 
                     <div className="space-y-2">
                       <label htmlFor="email" className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">
                         Email address
                       </label>
-                      <input type="email" id="email" required placeholder="name@example.com" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
+                      <input name="email" type="email" id="email" required placeholder="name@example.com" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
                     </div>
 
                     <div className="space-y-2">
@@ -250,25 +268,34 @@ export default function BrandforgeRoundtablePage() {
                       <label htmlFor="location" className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">
                         Where are you currently based?
                       </label>
-                      <input type="text" id="location" required placeholder="City, Country" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
+                      <input name="location" type="text" id="location" required placeholder="City, Country" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
                     </div>
 
                     <div className="space-y-2">
                       <label htmlFor="linkedin" className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">
                         LinkedIn Profile Link
                       </label>
-                      <input type="url" id="linkedin" required placeholder="https://linkedin.com/in/yourprofile" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
+                      <input name="linkedin" type="url" id="linkedin" required placeholder="https://linkedin.com/in/yourprofile" className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors placeholder:text-[#6B7573]/50 rounded-none" />
                     </div>
 
+                    {checkoutError && (
+                      <p className="font-sans text-sm text-[#B8433A]">{checkoutError}</p>
+                    )}
+
                     <div className="pt-6">
-                      <button type="submit" className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full">
-                        <span className="relative z-10">Register Interest</span>
+                      <button
+                        type="submit"
+                        disabled={isProcessing}
+                        className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full disabled:opacity-50"
+                      >
+                        <span className="relative z-10">
+                          {isProcessing ? "Redirecting to payment..." : "Continue to Payment"}
+                        </span>
                         <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                       </button>
                     </div>
                     
                   </form>
-                )}
               </Reveal>
             </div>
 

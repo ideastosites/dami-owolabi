@@ -39,6 +39,9 @@ yarn-error.log*
 # vendored tooling (rebuild via .claude/skills/image-generation/SKILL.md)
 /tools/claude-image-gen
 
+# payment records (customer PII) — local file store, never commit
+/data/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

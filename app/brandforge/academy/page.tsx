@@ -205,11 +205,14 @@ export default function BrandforgeAcademyPage() {
   const [isBookingMode, setIsBookingMode] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [phone, setPhone] = useState<string | undefined>("");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const openModal = (course: typeof courses[0]) => {
     setSelectedCourse(course);
     setIsBookingMode(false);
     setSubmitted(false);
+    setCheckoutError(null);
   };
 
   const closeModal = () => {
@@ -217,6 +220,7 @@ export default function BrandforgeAcademyPage() {
     setTimeout(() => {
       setIsBookingMode(false);
       setSubmitted(false);
+      setCheckoutError(null);
     }, 300);
   };
 
@@ -224,9 +228,45 @@ export default function BrandforgeAcademyPage() {
     setIsBookingMode(true);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!selectedCourse) return;
+
+    // Courses that aren't open yet just collect a waitlist lead — nothing to charge.
+    if (selectedCourse.status !== "Active") {
+      setSubmitted(true);
+      return;
+    }
+
+    setCheckoutError(null);
+    setIsProcessing(true);
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: selectedCourse.id,
+          name: formData.get("fullName"),
+          email: formData.get("email"),
+          phone,
+        }),
+      });
+      const body = await res.json();
+
+      if (!res.ok) {
+        setCheckoutError(body.error || "Something went wrong. Please try again.");
+        setIsProcessing(false);
+        return;
+      }
+
+      window.location.href = body.paymentRedirectUrl;
+    } catch {
+      setCheckoutError("Could not reach the payment service. Please try again.");
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -426,9 +466,13 @@ export default function BrandforgeAcademyPage() {
                 <div className="max-w-2xl mx-auto py-4 animate-in slide-in-from-right-4 duration-300">
                   <div className="mb-8 text-center">
                     <h4 className="font-sans font-bold text-3xl text-[#02232A] mb-2">
-                      {selectedCourse.status === 'Active' ? 'Register Your Interest' : 'Join the Waitlist'}
+                      {selectedCourse.status === 'Active' ? 'Complete Your Booking' : 'Join the Waitlist'}
                     </h4>
-                    <p className="font-sans text-[#6B7573]">Fill out the form below to secure your spot for <strong>{selectedCourse.title}</strong>.</p>
+                    <p className="font-sans text-[#6B7573]">
+                      {selectedCourse.status === 'Active'
+                        ? <>You&apos;ll be taken to a secure payment page to complete your booking for <strong>{selectedCourse.title}</strong>.</>
+                        : <>Fill out the form below to secure your spot for <strong>{selectedCourse.title}</strong>.</>}
+                    </p>
                   </div>
                   
                   {submitted ? (
@@ -453,11 +497,11 @@ export default function BrandforgeAcademyPage() {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="space-y-2">
                         <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">Full name</label>
-                        <input type="text" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
+                        <input name="fullName" type="text" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
                       </div>
                       <div className="space-y-2">
                         <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">Email address</label>
-                        <input type="email" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
+                        <input name="email" type="email" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
                       </div>
                       <div className="space-y-2">
                         <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">WhatsApp number</label>
@@ -474,16 +518,28 @@ export default function BrandforgeAcademyPage() {
                       </div>
                       <div className="space-y-2">
                         <label className="block font-roc font-semibold text-xs uppercase tracking-wider text-[#02232A]">Where are you currently based?</label>
-                        <input type="text" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
+                        <input name="location" type="text" required className="w-full px-0 py-2.5 bg-transparent border-b border-[#E3E7E7] text-[#0A0A0A] font-sans text-base focus:outline-none focus:border-[#054753] transition-colors rounded-none" />
                       </div>
+                      {checkoutError && (
+                        <p className="font-sans text-sm text-[#B8433A]">{checkoutError}</p>
+                      )}
                       <div className="pt-6">
-                        <button type="submit" className="w-full py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase hover:bg-[#054753] transition-colors rounded-full">
-                          Submit Application
+                        <button
+                          type="submit"
+                          disabled={isProcessing}
+                          className="w-full py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase hover:bg-[#054753] transition-colors rounded-full disabled:opacity-50"
+                        >
+                          {isProcessing
+                            ? "Redirecting to payment..."
+                            : selectedCourse.status === 'Active'
+                              ? 'Continue to Payment'
+                              : 'Submit Application'}
                         </button>
-                        <button 
+                        <button
                           type="button"
                           onClick={() => setIsBookingMode(false)}
-                          className="w-full mt-4 py-2 font-sans text-sm text-[#6B7573] hover:text-[#0A0A0A] transition-colors"
+                          disabled={isProcessing}
+                          className="w-full mt-4 py-2 font-sans text-sm text-[#6B7573] hover:text-[#0A0A0A] transition-colors disabled:opacity-50"
                         >
                           Back to Course Details
                         </button>
