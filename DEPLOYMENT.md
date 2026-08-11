@@ -241,6 +241,68 @@ in the Novac dashboard's live settings (not the sandbox settings), once you've s
 
 ---
 
+## Appendix: Deploying without Git
+
+If you'd rather not set up SSH/deploy keys at all, you can skip sections 2–3 entirely and upload the built app directly through cPanel's **File Manager** (or an FTP/SFTP client). Sections 4–11 above (Node.js App setup, env vars, `/data/` symlink, cron jobs, Novac callback URL, checklist) are unchanged — this only replaces how the code gets onto the server and how you redeploy later.
+
+The trade-off: every redeploy is a manual re-upload instead of `git pull`, and there's no history of what's actually running on the server — worth it for a simple setup, more error-prone once updates get frequent.
+
+### A. Build locally, upload only what's needed
+
+Next.js needs the source, `node_modules`, and the built `.next/` output to run `next start` (this app doesn't use `output: "standalone"`, so `node_modules` has to travel with it — see note below if you'd rather avoid that). From your local machine, in the project root:
+
+```
+npm ci
+npm run build
+```
+
+Then zip up exactly what the server needs to run — skip `.git`, dev-only files, and anything gitignored like `.env*` and `/data/`:
+
+```
+zip -r deploy.zip \
+  .next public app components lib \
+  server.js package.json package-lock.json next.config.ts \
+  node_modules \
+  -x "node_modules/.cache/*"
+```
+
+This zip will be large (node_modules included) — that's expected and fine for a one-time/occasional upload.
+
+### B. First upload
+
+1. cPanel → **File Manager**, navigate to (or create) a directory **outside** `public_html`, e.g. `dami-owolabi-app`.
+2. **Upload** → select `deploy.zip` → wait for it to finish → select it → **Extract**.
+3. Delete the zip afterward to save space (File Manager → select `deploy.zip` → Delete).
+4. Continue from **section 4** of this guide (Setup Node.js App), pointing **Application root** at this directory and **Application startup file** at `server.js`.
+5. Continue through **section 5** (env vars) and **section 6** (`/data/` symlink — do this via File Manager's "Create symlink" isn't available in most File Manager versions, so use cPanel's **Terminal** app for the two `mkdir`/`ln -s` commands instead — no SSH client needed on your own machine, just the browser-based Terminal).
+
+### C. Redeploying after changes
+
+Every time you make changes locally:
+
+```
+npm ci
+npm run build
+```
+
+Re-zip the same set of paths, then in File Manager: upload the new `deploy.zip` into the app directory, extract it (File Manager will prompt to overwrite — confirm), delete the zip. Then restart via **Setup Node.js App → Restart**, or `touch tmp/restart.txt` in the app root through File Manager's "New File" (create the `tmp/` folder once if missing).
+
+Since `.next/` is a full rebuild each time and `node_modules` rarely changes, you can speed this up after the first upload by zipping and re-uploading just `.next/`, `server.js`, `package.json`, and any changed source directories — Passenger only needs `.next/` and `node_modules` to actually serve traffic; `app/`, `components/`, `lib/` are pre-compiled into `.next/` and aren't read at runtime.
+
+### Note: avoiding the node_modules upload entirely
+
+If re-uploading `node_modules` every time is too slow on a weak connection, use cPanel's **Terminal** app (browser-based, no SSH client needed) after each code upload to run `npm ci` server-side instead of zipping `node_modules` locally:
+
+```
+cd ~/dami-owolabi-app
+source ~/nodevenv/dami-owolabi-app/20/bin/activate
+npm ci
+```
+
+That still avoids needing a git checkout or deploy key — it's just running `npm` against files you uploaded by hand, not files git pulled.
+
+---
+
 ## Notes on why this shape, specifically
 
 - **Deploy key, not a personal access token**: a PAT tied to your GitHub account would also work, but a repo-scoped, read-only deploy key is safer to leave sitting on a shared host — if the server is ever compromised, the blast radius is "can read this one repo," not "can act as your GitHub account."
