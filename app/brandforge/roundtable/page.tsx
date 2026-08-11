@@ -8,9 +8,11 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Honeypot from "@/components/Honeypot";
 import StructuredData from "@/components/StructuredData";
+import ProcessingSubmitButton from "@/components/ProcessingSubmitButton";
 import { breadcrumbSchema } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 import { getProduct } from "@/lib/payments/products";
+import { postJsonWithRetry } from "@/lib/checkout/postJsonWithRetry";
 
 const breadcrumbs = breadcrumbSchema([
   { name: "Home", path: "/" },
@@ -43,41 +45,38 @@ const serviceSchema = {
 export default function BrandforgeRoundtablePage() {
   const [phone, setPhone] = useState<string | undefined>("");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isRetrying, setIsRetrying] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setCheckoutError(null);
+    setIsRetrying(false);
     setIsProcessing(true);
 
     const formData = new FormData(e.currentTarget);
 
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          productId: "roundtable",
-          name: formData.get("fullName"),
-          email: formData.get("email"),
-          phone,
-          website: formData.get("website"),
-          formRenderedAt: formData.get("formRenderedAt"),
-        }),
-      });
-      const body = await res.json();
+    const result = await postJsonWithRetry<{ paymentRedirectUrl: string }>(
+      "/api/checkout",
+      {
+        productId: "roundtable",
+        name: formData.get("fullName"),
+        email: formData.get("email"),
+        phone,
+        website: formData.get("website"),
+        formRenderedAt: formData.get("formRenderedAt"),
+      },
+      { onRetry: () => setIsRetrying(true) }
+    );
 
-      if (!res.ok) {
-        setCheckoutError(body.error || "Something went wrong. Please try again.");
-        setIsProcessing(false);
-        return;
-      }
-
-      window.location.href = body.paymentRedirectUrl;
-    } catch {
-      setCheckoutError("Could not reach the payment service. Please try again.");
+    if (!result.ok) {
+      setCheckoutError(result.error);
       setIsProcessing(false);
+      setIsRetrying(false);
+      return;
     }
+
+    window.location.href = result.data.paymentRedirectUrl;
   };
 
   return (
@@ -319,20 +318,22 @@ export default function BrandforgeRoundtablePage() {
                     {checkoutError && (
                       <p className="font-sans text-sm text-[#B8433A]">{checkoutError}</p>
                     )}
+                    {isProcessing && (
+                      <p className="font-sans text-sm text-[#6B7573]">
+                        {isRetrying
+                          ? "Still trying — please hang on a moment longer."
+                          : "This can take a few seconds. Please don't close this window."}
+                      </p>
+                    )}
 
                     <div className="pt-6">
-                      <button
-                        type="submit"
-                        disabled={isProcessing}
-                        className="group relative w-full flex items-center justify-center px-6 py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase overflow-hidden rounded-full disabled:opacity-50"
-                      >
-                        <span className="relative z-10">
-                          {isProcessing ? "Redirecting to payment..." : "Continue to Payment"}
-                        </span>
-                        <div className="absolute inset-0 bg-[#439aa9] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-                      </button>
+                      <ProcessingSubmitButton
+                        isProcessing={isProcessing}
+                        idleLabel="Continue to Payment"
+                        processingLabel="Redirecting to payment..."
+                      />
                     </div>
-                    
+
                   </form>
               </Reveal>
             </div>

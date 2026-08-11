@@ -8,8 +8,10 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Honeypot from "@/components/Honeypot";
 import StructuredData from "@/components/StructuredData";
+import ProcessingSubmitButton from "@/components/ProcessingSubmitButton";
 import { siteUrl } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/seo";
+import { postJsonWithRetry } from "@/lib/checkout/postJsonWithRetry";
 
 // To turn a course on/off, change the `status` field.
 // status: "Active" will display "Available Now" and "Book This Course".
@@ -236,6 +238,7 @@ export default function BrandforgeAcademyPage() {
   const [submitted, setSubmitted] = useState(false);
   const [phone, setPhone] = useState<string | undefined>("");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isRetrying, setIsRetrying] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const openModal = (course: typeof courses[0]) => {
@@ -264,69 +267,60 @@ export default function BrandforgeAcademyPage() {
 
     const formData = new FormData(e.currentTarget);
 
-    // Courses that aren't open yet just collect a waitlist lead — nothing to charge.
-    if (selectedCourse.status !== "Active") {
-      setCheckoutError(null);
-      setIsProcessing(true);
-      try {
-        const res = await fetch("/api/waitlist", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            courseId: selectedCourse.id,
-            courseTitle: selectedCourse.title,
-            name: formData.get("fullName"),
-            email: formData.get("email"),
-            phone,
-            location: formData.get("location"),
-            website: formData.get("website"),
-            formRenderedAt: formData.get("formRenderedAt"),
-          }),
-        });
-        if (!res.ok) {
-          const body = await res.json().catch(() => ({}));
-          setCheckoutError(body.error || "Something went wrong. Please try again.");
-          setIsProcessing(false);
-          return;
-        }
-        setIsProcessing(false);
-        setSubmitted(true);
-      } catch {
-        setCheckoutError("Could not reach the server. Please try again.");
-        setIsProcessing(false);
-      }
-      return;
-    }
-
     setCheckoutError(null);
+    setIsRetrying(false);
     setIsProcessing(true);
 
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          productId: selectedCourse.id,
+    // Courses that aren't open yet just collect a waitlist lead — nothing to charge.
+    if (selectedCourse.status !== "Active") {
+      const result = await postJsonWithRetry(
+        "/api/waitlist",
+        {
+          courseId: selectedCourse.id,
+          courseTitle: selectedCourse.title,
           name: formData.get("fullName"),
           email: formData.get("email"),
           phone,
+          location: formData.get("location"),
           website: formData.get("website"),
           formRenderedAt: formData.get("formRenderedAt"),
-        }),
-      });
-      const body = await res.json();
+        },
+        { onRetry: () => setIsRetrying(true) }
+      );
 
-      if (!res.ok) {
-        setCheckoutError(body.error || "Something went wrong. Please try again.");
+      if (!result.ok) {
+        setCheckoutError(result.error);
         setIsProcessing(false);
+        setIsRetrying(false);
         return;
       }
-
-      window.location.href = body.paymentRedirectUrl;
-    } catch {
-      setCheckoutError("Could not reach the payment service. Please try again.");
       setIsProcessing(false);
+      setIsRetrying(false);
+      setSubmitted(true);
+      return;
     }
+
+    const result = await postJsonWithRetry<{ paymentRedirectUrl: string }>(
+      "/api/checkout",
+      {
+        productId: selectedCourse.id,
+        name: formData.get("fullName"),
+        email: formData.get("email"),
+        phone,
+        website: formData.get("website"),
+        formRenderedAt: formData.get("formRenderedAt"),
+      },
+      { onRetry: () => setIsRetrying(true) }
+    );
+
+    if (!result.ok) {
+      setCheckoutError(result.error);
+      setIsProcessing(false);
+      setIsRetrying(false);
+      return;
+    }
+
+    window.location.href = result.data.paymentRedirectUrl;
   };
 
   return (
@@ -587,18 +581,21 @@ export default function BrandforgeAcademyPage() {
                       {checkoutError && (
                         <p className="font-sans text-sm text-[#B8433A]">{checkoutError}</p>
                       )}
-                      <div className="pt-6">
-                        <button
-                          type="submit"
-                          disabled={isProcessing}
-                          className="w-full py-4 bg-[#02232A] text-white font-roc font-bold text-xs tracking-widest uppercase hover:bg-[#054753] transition-colors rounded-full disabled:opacity-50"
-                        >
-                          {isProcessing
-                            ? (selectedCourse.status === 'Active' ? "Redirecting to payment..." : "Submitting...")
+                      {isProcessing && (
+                        <p className="font-sans text-sm text-[#6B7573]">
+                          {isRetrying
+                            ? "Still trying — please hang on a moment longer."
                             : selectedCourse.status === 'Active'
-                              ? 'Continue to Payment'
-                              : 'Submit Application'}
-                        </button>
+                              ? "This can take a few seconds. Please don't close this window."
+                              : "Submitting your application..."}
+                        </p>
+                      )}
+                      <div className="pt-6">
+                        <ProcessingSubmitButton
+                          isProcessing={isProcessing}
+                          idleLabel={selectedCourse.status === 'Active' ? 'Continue to Payment' : 'Submit Application'}
+                          processingLabel={selectedCourse.status === 'Active' ? 'Redirecting to payment...' : 'Submitting...'}
+                        />
                         <button
                           type="button"
                           onClick={() => setIsBookingMode(false)}

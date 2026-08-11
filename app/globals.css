@@ -81,6 +81,27 @@ body {
   }
 }
 
+/* Checkout/submit button fill — communicates a request is in flight without
+   claiming a false completion time. Eases toward ~93% and holds there;
+   the button's own success/error state (redirect or error message) is what
+   actually resolves it, not the animation reaching 100%. */
+@keyframes checkout-progress-fill {
+  0% { transform: scaleX(0); }
+  70% { transform: scaleX(0.8); }
+  100% { transform: scaleX(0.93); }
+}
+
+.checkout-progress-fill {
+  animation: checkout-progress-fill 9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkout-progress-fill {
+    animation: none;
+    transform: scaleX(0.6);
+  }
+}
+
 /* Confined dot-grid texture for stat / focus zones. */
 .dot-grid {
   background-image: radial-gradient(circle, #0a0a0a 1px, transparent 1px);
