@@ -53,6 +53,18 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+  // Site-wide credit — inherited by every page unless a page's own
+  // metadata explicitly sets `authors`/`creator`/`publisher` itself
+  // (none currently do), per Next's shallow-merge-per-key metadata model.
+  authors: [
+    { name: "IdeasToSites", url: "https://ideastosites.com" },
+    { name: "Laolu Ibitoye" },
+    { name: "Franklin Pre-Gee" },
+    { name: "Oladele (Niji) Oladipupo" },
+    { name: "Awwal Folarin" },
+  ],
+  creator: "IdeasToSites",
+  publisher: "IdeasToSites",
   openGraph: {
     title,
     description,

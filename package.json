@@ -2,6 +2,16 @@
   "name": "dami_owolabi_website",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "IdeasToSites",
+    "url": "https://ideastosites.com"
+  },
+  "contributors": [
+    { "name": "Laolu Ibitoye (Lead Developer)" },
+    { "name": "Franklin Pre-Gee" },
+    { "name": "Oladele (Niji) Oladipupo" },
+    { "name": "Awwal Folarin" }
+  ],
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
