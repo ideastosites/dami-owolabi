@@ -12,7 +12,11 @@ const mulish = Mulish({
 });
 
 // Roc Grotesk using the licensed font files from the client's Roc Grotesk Font Family package.
-// Applied to the BrandForge ecosystem as the secondary typography.
+// Applied to the BrandForge ecosystem as the secondary typography. Only the
+// weights actually used with font-roc anywhere in the app are loaded —
+// ExtraBold/Black aren't referenced (font-extrabold/font-black only appear
+// on font-sans/Montserrat elements), so shipping and preloading those two
+// files on every page would be pure waste.
 const rocGrotesk = localFont({
   variable: "--font-roc",
   src: [
@@ -29,16 +33,6 @@ const rocGrotesk = localFont({
     {
       path: "../public/fonts/roc-grotesk/RocGrotesk-Bold.woff2",
       weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/roc-grotesk/RocGrotesk-ExtraBold.woff2",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/roc-grotesk/RocGrotesk-Black.woff2",
-      weight: "900",
       style: "normal",
     },
   ],

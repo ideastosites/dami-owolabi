@@ -159,7 +159,7 @@ const courses = [
   },
   {
     id: "commercial-marketing",
-    image: "/Commercial Marketing & Growth.jpg",
+    image: "/commercial-marketing-growth.jpg",
     title: "Commercial Marketing & Growth",
     duration: "2 Days",
     desc: "A practical course on how marketing connects to revenue, growth, and business performance.",

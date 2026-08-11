@@ -32,7 +32,7 @@ export default function WorkWithMePage() {
                             01 / Advisory
                         </span>
                         <div className="relative w-full aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden border border-[#E3E7E7]">
-                            <Image src="/Advisory.png" alt="Strategic Advisory" fill quality={100} className="object-cover object-left" />
+                            <Image src="/Advisory.jpg" alt="Strategic Advisory" fill quality={90} className="object-cover object-left" />
                         </div>
                     </div>
                     <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A]/90 space-y-8 font-sans leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
@@ -67,7 +67,7 @@ export default function WorkWithMePage() {
                             02 / Speaking
                         </span>
                         <div className="relative w-full aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden border border-[#E3E7E7]">
-                            <Image src="/Speaking-Keynote.png" alt="Speaking and Keynotes" fill quality={100} className="object-cover object-center md:object-[35%_center] lg:object-[32%_center]" />
+                            <Image src="/Speaking-Keynote.jpg" alt="Speaking and Keynotes" fill quality={90} className="object-cover object-center md:object-[35%_center] lg:object-[32%_center]" />
                         </div>
                     </div>
                     <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A]/90 space-y-8 font-sans leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
@@ -100,7 +100,7 @@ export default function WorkWithMePage() {
                             03 / Training
                         </span>
                         <div className="relative w-full aspect-[4/3] md:aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden border border-[#E3E7E7]">
-                            <Image src="/Training(1).png" alt="Corporate Training" fill quality={100} className="object-cover object-top md:object-center" />
+                            <Image src="/Training.jpg" alt="Corporate Training" fill quality={90} className="object-cover object-top md:object-center" />
                         </div>
                     </div>
                     <div className="md:col-span-8 max-w-[65ch] text-base md:text-[18px] text-[#0A0A0A]/90 space-y-8 font-sans leading-[1.6] bg-[#F7F8F8] p-8 md:p-10 rounded-2xl border border-[#E3E7E7]">
