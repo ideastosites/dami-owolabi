@@ -43,6 +43,15 @@ const nextConfig: NextConfig = {
     qualities: [75, 85, 90, 95, 100],
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    // The production host reports far more CPUs than it actually has RAM
+    // for — Next's default worker count (one per detected CPU) spawned 21
+    // parallel build workers during "Collecting page data" and the OOM
+    // killer took the process down (`Killed`, no error message). This site
+    // has well under 100 pages total, so setting the per-worker page
+    // budget above that forces everything onto a single build worker.
+    staticGenerationMinPagesPerWorker: 100,
+  },
   async headers() {
     return [
       {
