@@ -43,6 +43,10 @@ const nextConfig: NextConfig = {
     qualities: [75, 85, 90, 95, 100],
     formats: ["image/avif", "image/webp"],
   },
+  // Source maps aren't useful in production for a marketing site with no
+  // client-facing error reporting hooked up, and generating them adds real
+  // memory overhead during the build — see the memory knobs below.
+  productionBrowserSourceMaps: false,
   experimental: {
     // The production host reports far more CPUs than it actually has RAM
     // for — Next's default worker count (one per detected CPU) spawned 21
@@ -51,6 +55,13 @@ const nextConfig: NextConfig = {
     // has well under 100 pages total, so setting the per-worker page
     // budget above that forces everything onto a single build worker.
     staticGenerationMinPagesPerWorker: 100,
+    // Official low-risk flag for exactly this situation (per Next's own
+    // "How to optimize memory usage" guide) — trims webpack's peak memory
+    // during compilation at the cost of a slightly slower build.
+    webpackMemoryOptimizations: true,
+    // Prerender-phase source maps, on by default since Next 15 — same
+    // memory tradeoff as productionBrowserSourceMaps above.
+    serverSourceMaps: false,
   },
   async headers() {
     return [
