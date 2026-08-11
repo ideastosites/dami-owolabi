@@ -48,12 +48,17 @@ const nextConfig: NextConfig = {
   // memory overhead during the build — see the memory knobs below.
   productionBrowserSourceMaps: false,
   experimental: {
-    // The production host reports far more CPUs than it actually has RAM
-    // for — Next's default worker count (one per detected CPU) spawned 21
-    // parallel build workers during "Collecting page data" and the OOM
-    // killer took the process down (`Killed`, no error message). This site
-    // has well under 100 pages total, so setting the per-worker page
-    // budget above that forces everything onto a single build worker.
+    // Next sizes its build worker pool from os.cpus()/os.freemem() — on
+    // shared hosting those report the physical host's totals, not this
+    // account's real cgroup/LVE limits, so it tried to spawn 21 workers and
+    // the account's actual thread limit (nproc) rejected most of them
+    // ("pthread_create: Resource temporarily unavailable"). `cpus: 1`
+    // bypasses that auto-detection entirely instead of just capping how
+    // pages are distributed across whatever pool size got auto-detected.
+    cpus: 1,
+    // Belt-and-braces alongside cpus: 1 above — keeps the whole
+    // static-generation phase on a single worker even if `cpus` is ever
+    // raised later without re-checking the host's real limits.
     staticGenerationMinPagesPerWorker: 100,
     // Official low-risk flag for exactly this situation (per Next's own
     // "How to optimize memory usage" guide) — trims webpack's peak memory
