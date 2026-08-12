@@ -51,7 +51,14 @@ export async function initiateCheckout(
       transactionReference: params.transactionReference,
       amount: params.amount,
       currency: params.currency,
-      redirectUrl: params.redirectUrl,
+      // TEMPORARY DIAGNOSTIC — omitted on purpose to test whether Novac
+      // falls back to the dashboard-configured Redirect URL when this
+      // isn't sent (their own API schema marks it nullable/optional).
+      // params.redirectUrl is still accepted and computed correctly by
+      // the caller (app/api/checkout/route.ts) — only this line is
+      // disabled. Re-enable by uncommenting once the dashboard-side
+      // redirect is confirmed working correctly.
+      // redirectUrl: params.redirectUrl,
       checkoutCustomerData: {
         email: params.customer.email,
         firstName: params.customer.firstName,
